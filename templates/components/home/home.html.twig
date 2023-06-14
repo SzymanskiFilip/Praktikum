@@ -1,48 +1,23 @@
 {% block style %}
     <style>
-        .home {
-
-        }
-
-        .home-element {
-
-        }
-
-        .element--text {
-
-        }
-
-        .social-media {
-
-        }
-
-        .social-media--a {
-
-        }
-
-        .download {
-
-        }
-
         @media screen and (max-width: 1020px) {
 
         }
         @media screen and (max-width: 1360px) {
+            #home{
+                height: calc(100dvh - 55px);
+            }
+        }
 
+        #home {
+            height: 100dvh;
+            background-color: rgb(var(--color-primary-darker));
         }
     </style>
 {% endblock %}
 
 {% block body %}
     <section id="home" class="home">
-        <div class="home-element">
-
-            {% if showDownloadButton %}
-                <a href="{{ path('downloadCv', {'hash': hash}) }}" target="_blank"><button type="button" class="download btn btn-primary bold">Bewerbung herunterladen</button></a>
-            {% endif %}
-            <div class="social-media">
-
-            </div>
-        </div>
+        
     </section>
 {% endblock %}
