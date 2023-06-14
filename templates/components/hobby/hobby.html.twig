@@ -6,6 +6,23 @@
 
         @media screen and (max-width: 650px){
         }
+
+        #hobby {
+            background-image: url("img/frantisek.jpg");
+        }
+
+        h1 {
+            color: rgb(var(--color-primary-lighter));
+            text-align: center;
+            padding-top: 96px;
+            text-shadow: 2px 2px 10px black 0.4;
+        }
+
+        .hobby-cards {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
     </style>
 {% endblock %}
 
@@ -13,17 +30,20 @@
     {% set hobbies = [
         {'headline': 'Programmieren',
         'content': 'In der Schule, sowie auch in meiner Freizeit, bereitet mir das Programmieren mit hauptsächlich Java und den Spring Framework und verschiedenen web Technologien. ',
-        'icon': ''},
+        'icon': 'programmieren.svg'},
         {'headline': 'Sprachen',
         'content': 'Außerhalb der Programmierung und der Schule lerne ich auch gerne Fremdsprachen. Zurzeit bin ich kommunikativ in drei Sprachen in Wort und Schrift.',
-        'icon': ''},
+        'icon': 'sprachen.svg'},
         {'headline': 'Krafttraining',
         'content': 'In der Freizeit trainiere ich gerne alleine oder mit meinen Freunden. ',
-        'icon': ''},
+        'icon': 'training.svg'},
 
     ] %}
 
     <section id="hobby" class="hobby">
+
+        <h1>Interessen</h1>
+
         <div class="hobby-element">
             <span class="hobby-cards">
                 {% for item in hobbies %}
