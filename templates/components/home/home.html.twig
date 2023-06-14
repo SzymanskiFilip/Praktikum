@@ -22,8 +22,30 @@
             text-shadow: 2px 5px 4px black 25%;
         }
 
-        div img {
-            vertical-align: top;
+        .image-holder{
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        .image-holder img:nth-child(1){
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        .image-holder img:nth-child(2){
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -62%)
+        }
+
+        .name-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 {% endblock %}
@@ -31,8 +53,12 @@
 {% block body %}
     <section id="home" class="home">
         <div>
-            <h1>Filip<br/>Szymanski</h1>
-            <div>
+            <div class="name-col">
+                <h1>Filip</h1>
+                <h1>Szymanski</h1>
+            </div>
+            
+            <div class="image-holder">
                 <img src="svg/blob.svg" alt="">
                 <img src="svg/peep.svg" alt="">
             </div>
