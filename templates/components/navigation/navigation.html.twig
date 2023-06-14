@@ -6,8 +6,6 @@
 
             var navigation = document.getElementById("menu-holder");
             navigation.classList.toggle("toggle--on");
-
-            console.log("CLICK")
         }
     </script>
 {% endblock %}
@@ -125,7 +123,7 @@
         .menu-holder--points {
             width: fit-content;
             height: fit-content;
-            padding-left: 75px;
+            padding-left: 32px;
         }
 
         .menu-item {
@@ -133,6 +131,26 @@
         }
         .menu-item:not(:first-child) {
             margin-top: 24px;
+        }
+
+        .menu-item-row {
+            display: flex;
+            flex: row;
+            justify-content: start;
+            align-items: center;
+            gap: 8px;
+            margin-top: 32px; 
+        }
+
+        .menu-item-row img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .menu-item-row h3 {
+            color: rgb(var(--color-primary-lighter));
+            margin: 0;
+            padding: 0;
         }
 
         @media screen and (max-width: 1599px){
@@ -183,6 +201,30 @@
             <nav class="menu-holder--points">
                 <ul>
                     <li class="menu-item">
+                        <div class="menu-item-row">
+                            <image src="svg/home-alt-svgrepo-com.svg" alt="Icon"/>
+                            <a href=""><h3>HOME</h3></a>
+                        </div>
+                        <div class="menu-item-row">
+                            <image src="svg/question-mark-svgrepo-com.svg" alt="Icon"/>
+                            <a href=""><h3>INTERESSEN</h3></a>
+                        </div>
+                        <div class="menu-item-row">
+                            <image src="svg/graph-svgrepo-com.svg" alt="Icon"/>
+                            <a href=""><h3>ERFAHRUNGEN</h3></a>
+                        </div>
+                        <div class="menu-item-row">
+                            <image src="svg/history-svgrepo-com.svg" alt="Icon"/>
+                            <a href=""><h3>WERDEGANG</h3></a>
+                        </div>
+                        <div class="menu-item-row">
+                            <image src="svg/light-bulb-13-svgrepo-com.svg" alt="Icon"/>
+                            <a href=""><h3>KENNTNISSE</h3></a>
+                        </div>
+                        <div class="menu-item-row">
+                            <image src="svg/email-svgrepo-com.svg" alt="Icon"/>
+                            <a href=""><h3>KONTAKT</h3></a>
+                        </div>
                     </li>
                 </ul>
             </nav>
