@@ -4,10 +4,10 @@
 }
 
 :root {
-    --color-primary-dark: 48,52,43;
-    --color-primary-darker: 31,37,29;
-    --color-primary-normal: 146, 162, 134;
-    --color-primary-light: 40, 45, 54;
+    --color-primary-dark: 40, 45, 54;
+    --color-primary-darker: 42, 43, 32;
+    --color-primary-normal: 207, 247, 255;
+    --color-primary-light: 0, 255, 148;
     --color-primary-lighter: 246,254,241;
     --color-navbar-blue: 45,111,209;
 

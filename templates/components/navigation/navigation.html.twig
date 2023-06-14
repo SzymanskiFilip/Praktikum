@@ -29,6 +29,10 @@
             height: 100vh;
             z-index: 1;
             top:0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .toggle-holder {
@@ -153,6 +157,27 @@
             padding: 0;
         }
 
+        .sidebar-item {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-item p:nth-child(1){
+            color: rgb(var(--color-primary-light));
+            font-weight: 900;
+        }
+
+        .links-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .links-row p {
+            color: rgb(var(--color-primary-light));
+            font-weight: bold;
+        }
+
         @media screen and (max-width: 1599px){
             .header-holder {
                 width: 320px;
@@ -192,11 +217,33 @@
 {% endblock %}
 {% block body %}
     <header class="header-holder">
+
+
+        <div class="sidebar-container">
+            <div class="sidebar-item">
+                <p>NAME</p>
+                <p>Filip Szymanski</p>
+            </div>
+            <div class="sidebar-item">
+                <p>SCHULE</p>
+                <p>Carl-Severing-Berufskolleg </br> Berufliches Gymnasium für </br>Mathematik und Informatik</p>
+            </div>
+            <div class="sidebar-item">
+                <p>EMAIL</p>
+                <p>szymanski.fp@gmail.com</p>
+            </div>
+            <div class="links-row">
+                <a href=""><p>Linkedin</p></a>
+                <a href=""><p>Github</p></a>
+            </div>
+        <div>
+
         <div class="toggle-holder">
             <div id="toggle" onClick="onNav()">
                 <div class="menu-line"></div>
-            </div>
+            </div> 
         </div>
+        
         <div id="menu-holder">
             <nav class="menu-holder--points">
                 <ul>
