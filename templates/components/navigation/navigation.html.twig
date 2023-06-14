@@ -6,6 +6,8 @@
 
             var navigation = document.getElementById("menu-holder");
             navigation.classList.toggle("toggle--on");
+
+            console.log("CLICK")
         }
     </script>
 {% endblock %}
@@ -42,6 +44,10 @@
             height: 32px;
             width: 30px;
             position: relative;
+        }
+
+        #toggle:hover{
+            cursor: pointer;
         }
 
         #toggle:before {
@@ -97,7 +103,7 @@
             width: 26px;
         }
         #menu-holder {
-            background-color: rgb(var(--color-primary-light));
+            background-color: rgb(var(--color-navbar-blue));
             width: 380px;
             height: 100%;
             min-height: 100vh;
@@ -169,7 +175,7 @@
 {% block body %}
     <header class="header-holder">
         <div class="toggle-holder">
-            <div id="toggle" >
+            <div id="toggle" onClick="onNav()">
                 <div class="menu-line"></div>
             </div>
         </div>
@@ -177,7 +183,6 @@
             <nav class="menu-holder--points">
                 <ul>
                     <li class="menu-item">
-
                     </li>
                 </ul>
             </nav>
