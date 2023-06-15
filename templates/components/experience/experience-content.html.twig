@@ -28,6 +28,10 @@
             margin-right: 10px;
         }
 
+        .blue {
+            color: blue;
+        }
+
         @media screen and (max-width: 650px) {
             .experience-content {
                 flex-direction: column;
@@ -35,7 +39,7 @@
 
             .experience-content-img {
                 aspect-ratio: 2/1;
-            }
+            }   
         }
     </style>
 {% endblock %}
@@ -45,7 +49,9 @@
 
         <span class="experience-content-text">
             <h3> {{ item.headline }}</h3>
-            <h1>{{index}}</h1>
+
+            <h1 class="{{index is odd ? 'blue left' : 'right'}}">{{index}} index</h1>
+
             <p class="color-primary-normal"> {{ item.content }}</p>
             {% if item.link is defined %}
                 <div class="experiene-content-link">
