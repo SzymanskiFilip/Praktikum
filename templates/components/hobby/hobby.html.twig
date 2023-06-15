@@ -9,6 +9,7 @@
 
         #hobby {
             background-image: url("img/frantisek.jpg");
+            background-size: cover;
         }
 
         h1 {
@@ -22,7 +23,10 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
+            margin-top: 40px;
+            padding-bottom: 96px;
         }
+
     </style>
 {% endblock %}
 
@@ -30,13 +34,16 @@
     {% set hobbies = [
         {'headline': 'Programmieren',
         'content': 'In der Schule, sowie auch in meiner Freizeit, bereitet mir das Programmieren mit hauptsächlich Java und den Spring Framework und verschiedenen web Technologien. ',
-        'icon': 'programmieren.svg'},
+        'icon': 'svg/programmieren.svg',
+        'index': 0},
         {'headline': 'Sprachen',
         'content': 'Außerhalb der Programmierung und der Schule lerne ich auch gerne Fremdsprachen. Zurzeit bin ich kommunikativ in drei Sprachen in Wort und Schrift.',
-        'icon': 'sprachen.svg'},
+        'icon': 'svg/sprachen.svg',
+        'index': 1},
         {'headline': 'Krafttraining',
         'content': 'In der Freizeit trainiere ich gerne alleine oder mit meinen Freunden. ',
-        'icon': 'training.svg'},
+        'icon': 'svg/training.svg',
+        'index': 2},
 
     ] %}
 
