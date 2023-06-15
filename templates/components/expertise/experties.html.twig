@@ -1,34 +1,12 @@
 {% block style %}
     <style>
-        .expertise {
-
-        }
-        .expertise-element{
-
-        }
-        @media screen and (max-width: 650px){
-
-        }
+       
     </style>
-    {{ block('style', 'components/expertise/experties-item.html.twig') }}
+    
 {% endblock %}
 
 {% block body %}
-    {% set expertises = [
-    ]
-    %}
-
-    <div id="expertise" class="expertise">
-        <div class="expertise-element">
-
-            {% for expertise in expertises %}
-                {% with expertise %}
-                    {{ block('body', 'components/expertise/experties-item.html.twig') }}
-                {% endwith %}
-            {% endfor %}
-
-        </div>
-    </div>
+    <h1>HELOoooooo</h1>
 {% endblock %}
 
 {% block javascripts %}
