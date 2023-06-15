@@ -11,12 +11,13 @@
             padding-top: 8px;
             list-style: none;
             transition: .3s;
+            margin-left: 150px;
         }
 
         .timline-event-date {
             position: absolute;
             left: -115px;
-            top: 2px;
+            top: 9px;
             transition: .3s;
             color: rgb(var(--color-primary-light));
             font-weight: 700;
@@ -42,7 +43,7 @@
             position: absolute;
             left: -16px;
             top: 4px;
-            z-index: 1;
+            z-index: 0;
             transition: .3s;
         }
 
@@ -82,8 +83,12 @@
 {% block body %}
         <li class="timeline-event">
             <span class="timeline-circle"></span>
-            <div> <p class="timeline-event-content"><b> {{ (item.contentDate) }}</b>  {{ (item.content)}} </p></div>
-            <div class="timline-event-date"> <p class="color-primary-light"> {{ (item.date) }} </p></div>
+                <div>
+                <p class="timeline-event-content"><b> {{ (item.contentDate) }}</b>  {{ (item.content)}} </p>
+                </div>
+            <div class="timline-event-date">
+                <p class="color-primary-light"> {{ (item.date) }} </p>
+            </div>
         </li>
 
 {% endblock %}

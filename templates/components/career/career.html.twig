@@ -5,23 +5,48 @@
 {% endblock %}
 {% block style %}
     <style>
-        .career {
+        @media screen and (max-width: 1020px){
 
+        }
+        .career {
+            background-color: rgb(var(--color-primary-dark));
+            padding-bottom: 96px;
         }
 
         ul.career-element {
-
-        }
-
-        @media screen and (max-width: 1020px){
-
+            margin-top: 40px;
+            margin-right: 32px;
         }
     </style>
 {% endblock %}
 {% block body %}
     {% set career = [
+        {
+            'contentDate': '2009-2013',
+            'content': 'Grundschule Pierzchow',
+            'date': '2009'
+        },
+        {
+            'contentDate': '2013-2015',
+            'content': '2013-2015 Grundschule am Bühlbusch Verl',
+            'date': '2013'
+        },
+        {
+            'contentDate': '2015-2020',
+            'content': 'Gesamtschule Verl
+            In den Zeitraum fand mein erstes 3-wöchiges Praktikum in dem Bereich der Software Entwicklung statt. Außerdem ist mein Interesse an der Software Entwicklung und der Informatik seit dem Zeitpunkt immer größer geworden.',
+            'date': '2015'
+        },
+        {
+            'contentDate': '2020-jetzt',
+            'content': 'seit 2020 bin ich in dem Carl-Severing-Berufskolleg in Bielefeld, wo ich meine Allgemeine Hochschulreife mit den Leistungsfächern Informatik und Mathematik absolvieren werde. ',
+            'date': '2023'
+        },
     ] %}
     <section id="career" class="career">
+
+        <h1>Werdegang</h1>
+
         <ul class="career-element">
             {% for item in career %}
                 {% include 'components/career/timeline.html.twig' %}
