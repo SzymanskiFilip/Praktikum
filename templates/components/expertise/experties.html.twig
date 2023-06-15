@@ -1,16 +1,96 @@
 {% block style %}
     <style>
+       #knowledge {
+            background-color: rgb(var(--color-primary-darker));
+       }
+
+       .knowledge h1 {
+            padding-bottom: 96px;
+       }
+
+       .experties-columns {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-left: 32px;
+            margin-right: 32px;
+       }
+
+       .experties-columns h2 {
+            text-align: center;
+            color: #F5F5F5;
+            font-weight: 400;
+            padding: 0;
+            margin: 0;
+       }
+
+       .text-circle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+       }
+
+       .circle {
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            background-color: rgb(var(--color-navbar-blue));
+            margin-left: 8px;
+            transform-origin: 50%, 50%;
+            background-image: url("svg/arrow.svg");
+            background-repeat: no-repeat;
+            background-size: 20px 20px;
+            background-position: center;
+       }
+
+       .circle-rotated {
+            transform: rotate(90deg);
+       }
        
     </style>
-    
 {% endblock %}
 
 {% block body %}
-    <h1>HELOoooooo</h1>
+
+    {# first three are ment to be used as the cols and the last one as the bottom row#}
+    {% set skills = [
+        [{'img': 'svg/tech/Java-Light.svg'},{'img': 'svg/tech/JavaScript.svg'},{'img': ''}],
+        [{'img': ''},{'img': ''},{'img': ''}],
+        [{'img': ''},{'img': ''},{'img': ''}],
+        [{'img': ''},{'img': ''},{'img': ''}],
+    ]%}
+
+    <section id="knowledge" class="knowledge">
+       <h1>Kenntnisse</h1>
+
+       <section class="experties-columns">
+            <div class="text-circle">
+                <h2>Sprachen</h2>
+                <div class="circle" id="circle-1"></div>
+            </div>
+            <div class="text-circle">
+                <h2>Frameworks</h2>
+                <div class="circle" id="circle-2"></div>
+            </div>
+            <div class="text-circle">
+                <h2>Datenbanken</h2>
+                <div class="circle" id="circle-3"></div>
+            </div>
+       </section>
+    </section>
 {% endblock %}
 
 {% block javascripts %}
-    <script>
-        window.addEventListener('load', () => {})
-    </script>
+<script>
+window.addEventListener('load', () => {
+    console.log('hi')
+    circle1 = document.getElementById("circle-1");
+    circle2 = document.getElementById("circle-2");
+    circle3 = document.getElementById("circle-3");
+    circle1.addEventListener('click', () => {
+        circle1.classList.toggle("circle-rotated");
+    })
+})
+</script>
 {% endblock %}
