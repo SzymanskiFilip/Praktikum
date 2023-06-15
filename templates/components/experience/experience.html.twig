@@ -6,6 +6,7 @@
 {% block style %}
     <style>
         .experience {
+            background-color: rgb(var(--color-primary-darker));
         }
 
         .experience-element {
@@ -18,11 +19,44 @@
 {% block body %}
 
         {% set experiences = [
+            {
+                'img': 'test',
+                'headline': 'test',
+                'content': 'fdafa',
+                'link': 'fldafljka',
+                'linkText': 'fdlkadflka'
+            },
+            {
+                'img': 'test',
+                'headline': 'test',
+                'content': 'fdafa',
+                'link': 'fldafljka',
+                'linkText': 'fdlkadflka'
+            },
+            {
+                'img': 'test',
+                'headline': 'test',
+                'content': 'fdafa',
+                'link': 'fldafljka',
+                'linkText': 'fdlkadflka'
+            },
+            {
+                'img': 'test',
+                'headline': 'test',
+                'content': 'fdafa',
+                'link': 'fldafljka',
+                'linkText': 'fdlkadflka'
+            },
         ] %}
     <section id="experience" class="experience">
+
+        <h1>Erfahrungen</h1>
+
+        {% set sides = ['left', 'right']%}    
+
         <div class="experience-element">
             {% for item in experiences %}
-                {% include 'components/experience/experience-content.html.twig' %}
+                {% include 'components/experience/experience-content.html.twig' with {'index': loop.index0}%}
             {% endfor %}</div>
     </section>
 {% endblock %}
