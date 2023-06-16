@@ -1,9 +1,45 @@
+{% block javascripts %}
+<script>
+window.addEventListener('load', (e) => {
+    const alert = document.getElementById("alert");
+    if(alert !== null){
+        setTimeout(() => {
+            alert.remove();
+        }, 8000);
+    }
+})
+</script>
+{% endblock %}
+
+{% block style %}
+<style>
+    .alert {
+        position: absolute;
+        z-index: 100;
+        bottom: 0;
+        right: 0;
+        color: rgb(var(--color-primary-lighter));
+        background-color: rgb(var(--color-navbar-blue));
+        width: 100dvw;
+        height: 55px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.1rem;
+    }
+
+    .alert-danger {
+        background-color: #d9534f
+    }
+</style>
+{% endblock %}
+
 {% block body %}
     {% set flash_types = ['success', 'danger'] %}
 
     {% for flash_type in flash_types %}
         {% for message in app.flashes([id, '-', flash_type]|join) %}
-            <div class="alert alert-{{ flash_type }}">
+            <div id="alert" class="alert alert-{{ flash_type }}">
                 {{ message }}
             </div>
         {% endfor %}
