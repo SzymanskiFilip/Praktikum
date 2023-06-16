@@ -13,8 +13,6 @@
             flex-direction: row;
             justify-content: center;
             align-items: flex-start;
-            margin-left: 32px;
-            margin-right: 32px;
             gap: 78px;
        }
 
@@ -55,11 +53,16 @@
             transition: 0.3s;
        }
 
+       .circle:hover{
+            cursor: pointer;
+       }
+
        .circle-rotated {
             transform: rotate(90deg);
        }
 
        .column {
+            width: 300px;
             display: flex;
             flex-direction: column;
             justify-items: center;
@@ -68,13 +71,14 @@
        }
        
        .movable {
+            top: -450px;
             position: relative;
             overflow: hidden;
-            transition: 0.3s ease-in-out;
+            transition: 0.5s ease-in-out;
        }
 
        .moved {
-            transform: translateY(-450px);
+            transform: translateY(450px);
        }
     </style>
 {% endblock %}
@@ -84,9 +88,9 @@
     {# first three are ment to be used as the cols and the last one as the bottom row#}
     {% set skills = [
         [{'img': 'svg/tech/Java-Light.svg'},{'img': 'svg/tech/JavaScript.svg'},{'img': 'svg/tech/TypeScript.svg'}],
-        [{'img': ''},{'img': ''},{'img': ''}],
-        [{'img': ''},{'img': ''},{'img': ''}],
-        [{'img': ''},{'img': ''},{'img': ''}],
+        [{'img': 'svg/tech/Spring-Light.svg'},{'img': 'svg/tech/NextJS-Light.svg'},{'img': 'svg/tech/NestJS-Light.svg'}],
+        [{'img': 'svg/tech/MySQL-Light.svg'},{'img': 'svg/tech/PostgreSQL-Light.svg'},{'img': 'svg/tech/MongoDB.svg'}],
+        [{'img': 'svg/tech/Docker.svg'},{'img': 'svg/tech/Linux-Light.svg'},{'img': 'svg/tech/Bash-Light.svg'}],
     ]%}
 
     <section id="knowledge" class="knowledge">
@@ -109,6 +113,10 @@
                     <h2>Frameworks</h2>
                     <div class="circle" id="circle-2"></div>
                 </div>
+
+                <section id="column-2" class="movable">
+                    {% include 'components/expertise/expertise-column.twig' with {skills: skills[1]} %}
+                </section>
             </div>
 
             <div class="column">
@@ -116,6 +124,10 @@
                     <h2>Datenbanken</h2>
                     <div class="circle" id="circle-3"></div>
                 </div>
+
+                <section id="column-3" class="movable">
+                    {% include 'components/expertise/expertise-column.twig' with {skills: skills[2]} %}
+                </section>
             </div>
        </section>
     </section>
@@ -129,9 +141,11 @@ window.addEventListener('load', () => {
     circle3 = document.getElementById("circle-3");
 
     column1 = document.getElementById("column-1");
+    column2 = document.getElementById("column-2");
+    column3 = document.getElementById("column-3");
 
     let circles = [circle1, circle2, circle3]
-    let columns = [column1]
+    let columns = [column1, column2, column3]
     for(let i = 0; i < circles.length; i++){
         circles[i].addEventListener('click', () => {
             circles[i].classList.toggle('circle-rotated');
