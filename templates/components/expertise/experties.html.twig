@@ -15,13 +15,17 @@
             align-items: flex-start;
             gap: 78px;
        }
-
-       .experties-columns h2 {
+       h2 {
             text-align: center;
             color: #F5F5F5;
             font-weight: 400;
             padding: 0;
             margin: 0;
+       }
+
+       h2:nth-child(3) {
+            margin-top: 40px;
+            margin-bottom: 16px;
        }
 
        .text-circle {
@@ -42,6 +46,7 @@
        .circle {
             height: 40px;
             width: 40px;
+            margin-bottom: 10px;
             border-radius: 50%;
             background-color: rgb(var(--color-navbar-blue));
             margin-left: 8px;
@@ -77,8 +82,21 @@
             transition: 0.5s ease-in-out;
        }
 
+       .experties-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            padding-bottom: 96px;
+       }
+
        .moved {
             transform: translateY(450px);
+       }
+
+       .img {
+            height: 100px;
+            width: 100px;
        }
     </style>
 {% endblock %}
@@ -129,6 +147,13 @@
                     {% include 'components/expertise/expertise-column.twig' with {skills: skills[2]} %}
                 </section>
             </div>
+       </section>
+
+       <h2>Sonstiges</h2>
+       <section class="experties-row">
+            {% for item in skills[3] %}
+                <img src="{{asset(item.img)}}" class="img">
+            {% endfor %}
        </section>
     </section>
 {% endblock %}
