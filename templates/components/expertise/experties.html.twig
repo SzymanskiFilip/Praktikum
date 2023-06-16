@@ -11,10 +11,11 @@
        .experties-columns {
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
+            justify-content: center;
             align-items: flex-start;
             margin-left: 32px;
             margin-right: 32px;
+            gap: 78px;
        }
 
        .experties-columns h2 {
@@ -26,9 +27,18 @@
        }
 
        .text-circle {
+            z-index: 2;
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
+            box-shadow: 0 10px 10px rgb(var(--color-primary-darker));
+       }
+
+       .text-circle h2 {
+            z-index: 2;
+            background-color: rgb(var(--color-primary-darker));
+            padding-bottom: 10px;
        }
 
        .circle {
@@ -48,7 +58,24 @@
        .circle-rotated {
             transform: rotate(90deg);
        }
+
+       .column {
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            align-items: center;
+            overflow: hidden;
+       }
        
+       .movable {
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s ease-in-out;
+       }
+
+       .moved {
+            transform: translateY(-450px);
+       }
     </style>
 {% endblock %}
 
@@ -56,7 +83,7 @@
 
     {# first three are ment to be used as the cols and the last one as the bottom row#}
     {% set skills = [
-        [{'img': 'svg/tech/Java-Light.svg'},{'img': 'svg/tech/JavaScript.svg'},{'img': ''}],
+        [{'img': 'svg/tech/Java-Light.svg'},{'img': 'svg/tech/JavaScript.svg'},{'img': 'svg/tech/TypeScript.svg'}],
         [{'img': ''},{'img': ''},{'img': ''}],
         [{'img': ''},{'img': ''},{'img': ''}],
         [{'img': ''},{'img': ''},{'img': ''}],
@@ -66,17 +93,29 @@
        <h1>Kenntnisse</h1>
 
        <section class="experties-columns">
-            <div class="text-circle">
-                <h2>Sprachen</h2>
-                <div class="circle" id="circle-1"></div>
+            <div class="column">
+                <div class="text-circle">
+                    <h2>Sprachen</h2>
+                    <div class="circle" id="circle-1"></div>
+                </div>
+
+                <section id="column-1" class="movable">
+                    {% include 'components/expertise/expertise-column.twig' with {skills: skills[0]} %}
+                </section>
             </div>
-            <div class="text-circle">
-                <h2>Frameworks</h2>
-                <div class="circle" id="circle-2"></div>
+            
+            <div class="column">
+                <div class="text-circle">
+                    <h2>Frameworks</h2>
+                    <div class="circle" id="circle-2"></div>
+                </div>
             </div>
-            <div class="text-circle">
-                <h2>Datenbanken</h2>
-                <div class="circle" id="circle-3"></div>
+
+            <div class="column">
+                <div class="text-circle">
+                    <h2>Datenbanken</h2>
+                    <div class="circle" id="circle-3"></div>
+                </div>
             </div>
        </section>
     </section>
@@ -88,10 +127,15 @@ window.addEventListener('load', () => {
     circle1 = document.getElementById("circle-1");
     circle2 = document.getElementById("circle-2");
     circle3 = document.getElementById("circle-3");
+
+    column1 = document.getElementById("column-1");
+
     let circles = [circle1, circle2, circle3]
+    let columns = [column1]
     for(let i = 0; i < circles.length; i++){
         circles[i].addEventListener('click', () => {
             circles[i].classList.toggle('circle-rotated');
+            columns[i].classList.toggle('moved');
         })
     }
 })

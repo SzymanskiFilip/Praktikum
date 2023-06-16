@@ -1,7 +1,27 @@
 {% block style %}
+<style>
+.img-column {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 16px;
+}
+
+.img-column img {
+    height: 100px;
+    width: 100px;
+}
+</style>
 {% endblock %}
 
 {% block body %}
+<div class="img-column">
+    {% for skill in skills %}
+        <img src="{{ asset(skill.img) }}">
+    {% endfor %}
+</div>
 {% endblock %}
 
 {% block javascripts %}
