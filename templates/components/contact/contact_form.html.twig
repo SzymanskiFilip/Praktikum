@@ -14,6 +14,7 @@
 .contact {
     background-color: rgb(var(--color-primary-dark));
     position: relative;
+    font-family: 'Lexend', sans-serif;
 }
 
 #contact {
@@ -56,6 +57,20 @@
 .form-group input:focus{
     outline: none;
 }
+.form-group textarea {
+    padding: 16px;
+    width: 620px;
+    resize: vertical;
+    background-color: rgb(var(--color-primary-dark));
+    color: rgb(var(--color-primary-normal));
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 30px;
+    border: 2px solid white;
+    border-radius: 5px;
+    font-family: 'Lexend', sans-serif;
+}
+
 </style>
 {{ block('style', 'components/form/form.html.twig') }}
 {% endblock %}
