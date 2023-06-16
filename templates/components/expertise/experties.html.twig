@@ -42,6 +42,7 @@
             background-repeat: no-repeat;
             background-size: 20px 20px;
             background-position: center;
+            transition: 0.3s;
        }
 
        .circle-rotated {
@@ -84,13 +85,15 @@
 {% block javascripts %}
 <script>
 window.addEventListener('load', () => {
-    console.log('hi')
     circle1 = document.getElementById("circle-1");
     circle2 = document.getElementById("circle-2");
     circle3 = document.getElementById("circle-3");
-    circle1.addEventListener('click', () => {
-        circle1.classList.toggle("circle-rotated");
-    })
+    let circles = [circle1, circle2, circle3]
+    for(let i = 0; i < circles.length; i++){
+        circles[i].addEventListener('click', () => {
+            circles[i].classList.toggle('circle-rotated');
+        })
+    }
 })
 </script>
 {% endblock %}
