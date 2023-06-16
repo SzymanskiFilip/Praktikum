@@ -7,7 +7,33 @@
 <style>
     #contact {
         background-color: rgb(var(--color-primary-dark));
+        position: relative;
     }
+
+    .form-group label{
+        color: rgb(var(--color-primary-lighter));
+        background-color: rgb(var(--color-primary-dark));
+        position:relative;
+        color: pink;
+        top: 0;
+        left: 0;
+    }
+
+    .form-group input {
+        padding: 16px;
+        background-color: rgb(var(--color-primary-dark));
+        color: rgb(var(--color-primary-normal));
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 30px;
+        border: 2px solid white;
+        border-radius: 5px;
+    }
+
+    .form-group input:focus{
+        outline: none;
+    }
+    
 </style>
 {% endblock %}
 
