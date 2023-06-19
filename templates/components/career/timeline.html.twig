@@ -14,6 +14,10 @@
             margin-left: 150px;
         }
 
+        .date {
+            font-size: 18px;
+        }
+
         .timline-event-date {
             position: absolute;
             left: -115px;
@@ -78,6 +82,17 @@
             color: rgb(var(--color-primary-lighter));
             transition: color .3s ease-in-out;
         }
+
+        @media screen and (max-width: 640px){
+            .date {
+                font-size: 24px;
+                bottom: -10px;
+            }
+
+            .timline-event-date {
+                top: 4px;
+            }
+        }
     </style>
 {% endblock %}
 {% block body %}
@@ -87,7 +102,7 @@
                 <p class="timeline-event-content"><b> {{ (item.contentDate) }}</b>  {{ (item.content)}} </p>
                 </div>
             <div class="timline-event-date">
-                <p class="color-primary-light"> {{ (item.date) }} </p>
+                <p class="date color-primary-light"> {{ (item.date) }} </p>
             </div>
         </li>
 

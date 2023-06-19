@@ -60,6 +60,9 @@ class IndexController extends AbstractController
         /*
          * Weise den Variablen in dieser Klasse die Objekte zu, welche in den Parametern mitgegeben werden.
          */
+        $this->emailService = $emailService;
+        $this->hashService = $hashService;
+        $this->reciverEmailAddress = $reciverEmailAddress;
     }
 
     /**
@@ -67,28 +70,9 @@ class IndexController extends AbstractController
      */
     public function index(Request $request, QueryService $queryService, Filesystem $filesystem): Response
     {
-        // set some default variables
-        /*
-         * Erstelle eine Variable mit der Bezeichnung 'showDownloadButton' und weise ihr den Wert false zu
-         */
-
-        // create new empty contact object
-        /*
-         * In diesem Projekt gibt es ein Klasse, die sich Contact nennt. Diese hält die Informationen aus dem
-         * Kontaktformular so fern welche eingegeben wurden.
-         *
-         * Erstelle eine neue Variabel die 'contact' heißt und weise ihr ein neu erstelltes Contact Objekt zu.
-         */
-
-        // create new Form for ContactType (the ContactType defines the form fields)
-        /*
-         * Damit das Formular angezeigt wird, müssen wir dieses erstellen. Dazu hat diese Klasse eine Funktion, die
-         * heißt 'createForm'. Diese Funktion besitzt zwei Parameter. Einmal die Definition des Formulars und ein
-         * leeres Objekt, indem die eingegebene Daten gespeichert werden.
-         *
-         * Erstelle eine Variable mit dem namen 'form'. Erstelle mit der oben genannten Funktion ein neues Formular und
-         * weise es der Variable zu.
-         */
+        $showDownloadButton = false;
+        $contact = new Contact();
+        $form = $this->createForm(ContactType::class, $contact);
 
         // load form input from request if they are available
         /*
@@ -109,27 +93,23 @@ class IndexController extends AbstractController
          * '## Start des If-Blocks' und '## Ende des If-Blocks'
          * den Bereich welcher innerhalb des if-blockes steht.
          */
-        // ## Start des If-Blocks
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+            // ## Start des If-Blocks
             try {
-                // send email with contact infos
-                /*
-                 * Sende eine Email mit dem in dieser Klasse zur Verfügung gestellten Email Service.
-                 *
-                 * Schau dir dazu noch einmal an welche Informationen in der Contact Klasse zu finden ist.
-                 *
-                 * Weitere Informationen:
-                 * - Der Templatename: emails/contact.html.twig
-                 * - Das Template benötigt folgende Informationen aus der Contact Entität:
-                 *  - 'name' -> Der Name
-                 *  - 'from' --> Die Email des Ausfüllers des Kontaktformulares
-                 *  - 'message' --> Die Nachricht
-                 *
-                 */
-
-                // add flash message to notice the user the success message sending
+                $this->emailService->sendMail(
+                    "email@email.com",
+                    $this->reciverEmailAddress,
+                    $contact->getSubject(),
+                    'emails/contact.html.twig',
+                    [
+                        'name' => $contact->getName(),
+                        'email' => $contact->getEmail(),
+                        'message' => $contact->getMessage()
+                    ]
+                );
                 $this->addFlash('contact-success', 'Ihre Nachricht wurde erfolgreich gesendet!');
             } catch (\Exception $e) {
-                // add flash message to notice the user that something went wrong
                 $this->addFlash('contact-danger', 'Ihre Nachricht kann derzeit nicht zugestellt werden!');
 
                 // render template
@@ -142,12 +122,16 @@ class IndexController extends AbstractController
             // redirect to home route
             return $this->redirectToRoute('home');
         // ## Ende des If-Blocks
+        }
+
+        
 
         /*
          * Überprüfe mithilfe des 'hashService' und der Funktion 'validateHash', ob der Hash welcher möglicherweise
          * in der URL steht valide ist.
          * Das Ergebnis, welches ein boolischer Wert ist, wird der Variable 'showDownloadButton' zugewiesen.
          */
+        $showDownloadButton = $this->hashService->validateHash($request);
 
         // render template
         /*
@@ -166,6 +150,11 @@ class IndexController extends AbstractController
          * direkt mit dem Schlüsselwort 'return' zurückgeben.
          *
          */
+        return $this->renderForm('landingpage/index.html.twig', [
+                'form' => $form, 
+                'showDownloadButton' => $showDownloadButton, 
+                'hash' => $this->hashService->getHash($request)
+            ]);
     }
 
     /**
