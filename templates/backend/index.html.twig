@@ -7,6 +7,21 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 {% endblock %}
 
+{% block style %}
+<style>
+#alert-own {
+    position: static;
+    width: 100%;
+    font-size: 16px;
+}
+#alert-own-2{
+    position: static;
+    width: 100%;
+    font-size: 16px;
+}
+</style>
+{% endblock %}
+
 {% block body %}
 
     <div class="container backend">
@@ -45,7 +60,7 @@
                         <small id="expireCallsHelp" class="form-text text-muted">
                             Die Anzahl an Aufrufen des Links, nachdem der Link ungültig wird.</small>
                     </div>
-                    <div class="alert alert-warning" role="alert">
+                    <div class="alert alert-warning" id="alert-own" role="alert">
                         Achtung! Der link wird ungültig, wenn die maximale Anzahl an Tagen überschritten wird oder die
                         maximale Anzahl an Aufrufen erreicht wurde.
                     </div>
@@ -89,7 +104,7 @@
         <div class="row mb-4">
             <div class="col">
                 <h2 class="mb-3">Deinen Lebenslauf löschen</h2>
-                <div class="alert alert-info" role="alert">
+                <div class="alert alert-info" id="alert-own-2" role="alert">
                     Du musst deinen Lebenslauf nicht erst löschen um einen neuen Hochzuladen. Einfach einen neuen
                     Hochladen und der alte wird ersetzt.
                 </div>
