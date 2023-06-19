@@ -169,12 +169,14 @@ class IndexController extends AbstractController
          * Wenn nicht, dann returne einen Response mit der Meldung, dass man nicht autorisiert ist: 'Not authorized'.
          * Füge den passenden HTTP Response Code an.
          */
+        /*
         if($this->hashService->validateHash($request)){
 
         } else {
+            
             $res = new Response('Error hash not valid' . $this->hashService->getHash($request) , 401);
             return $res;
-        }
+        }*/
         
 
         /*
@@ -186,12 +188,17 @@ class IndexController extends AbstractController
          *
          * Verbinde diese drei Konstanten miteinander und speichere sie in eine Variable ('filename')
          */
-
+        $filename = self::CV_ASSET_DIR . '/' . self::CV_ASSET_FILENAME;
         /*
          * Überprüfe mithilfe des Filesystem Service, ob eine Datei mit dem eben erstellen Dateinamen existiert. Ist
          * das nicht der Fall, gebe erneut einen Response zurück der besagt, dass noch keine Datei gesetzt wurde und dem
          * Statuscode 404.
          */
+        if(!$filesystem->exists($filename)){
+            return new Response('File doesnt exits', 404);
+        } else {
+            return new Response('file exists', 200);
+        }
 
         /*
          * Wenn der Aufruf an diese Stelle gelangt ist, kann die Datei zurückgegeben werden. Dazu erstellen wir einen
