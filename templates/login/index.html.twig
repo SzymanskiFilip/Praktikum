@@ -11,38 +11,100 @@
 
 {% block style %}
     <style>
-        .login {
-            background-color: rgb(var(--color-primary-darker));
-            padding: 80px 30%;
-            height: calc(100vh - 160px);
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            align-items: center;
-            gap: 40px;
+    .login {
+         background-color: rgb(var(--color-primary-darker));
+         height: 100vh;
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         flex-direction: column;
+     }
+
+     form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 30px;
+     }
+
+
+    .login-text h1 {
+        color: rgb(var(--color-primary-lighter));
+        text-align: center;
+        margin-bottom: 64px;
+    }
+
+    .form-group {
+        position: relative;
+    }
+
+    .form-group label{
+        text-transform: uppercase;
+        color: rgb(var(--color-primary-lighter));
+        background-color: rgb(var(--color-primary-darker));
+        position: absolute;
+        top: -12px;
+        left: 10px;
+        padding: 2px;
+        padding-left: 4px;
+        padding-right: 4px;
+        font-size: 1.2rem;
+        font-family: 'Lexend', sans-serif;
+        font-weight: 400;
+    }
+    .form-group input {
+        padding: 16px;
+        width: 620px;
+        background-color: rgb(var(--color-primary-darker));
+        color: rgb(var(--color-primary-normal));
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 30px;
+        border: 2px solid white;
+        border-radius: 5px;
+    }
+
+    .form-group:nth-child(4){
+        color: white;
+        background-color: #d9534f;
+        border-radius: 5px;
+        font-family: 'Lexend', sans-serif;
+        width: auto;
+        width: 320px;
+        height: 62px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form-group input:focus{
+        outline: none;
+    }
+
+    .btn {
+        background-color: rgb(var(--color-navbar-blue));
+        color: rgb(var(--color-primary-lighter));
+        font-weight: bold;
+        border-radius: 5px;
+        width: 320px;
+        height: 62px;
+        text-transform: uppercase;
+        font-weight: 400;
+        font-size: 1.1rem;
+        transition: 0.1s linear;
+    }
+
+    @media screen and (max-width: 620px){
+        .form-group input{
+            width: calc(100vw - 60px)
         }
 
-        .login-text, .login-form {
-            width: 100%;
+        .btn {
+            width: calc(100vw * 0.5);
         }
 
-        @media screen and (max-width: 1600px) {
-            .login {
-                padding: 80px 25%;
-            }
-        }
-
-        @media screen and (max-width: 1020px) {
-            .login {
-                padding: 80px 20%;
-            }
-        }
-
-        @media screen and (max-width: 650px){
-            .login {
-                padding: 80px 10%;
-            }
-        }
+    }
+        
     </style>
 
     {{ block('style', 'components/form/form.html.twig') }}
@@ -50,20 +112,12 @@
 
 {% block body %}
     <section class="login">
+        
         <div class="login-text">
             <h1>LOGIN</h1>
-        </div>
-
+        </div   
         <div id="form" class="login-form">
-            {% if error %}
-                <div class="form-group">
-                    <span class="invalid-feedback d-block">
-                        <span class="form-error-icon badge badge-danger text-uppercase">Fehler</span>
-                        <span class="form-error-message">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
-                    </span>
-                </div>
-            {% endif %}
-
+            
             <form action="{{ path('login') }}" method="post">
                 <div class="form-group">
                     <label for="username">Anmeldename</label>
@@ -73,10 +127,21 @@
                     <label for="password">Passwort</label>
                     <input type="password" id="password" class="form-control {% if error %}is-invalid{% endif %}" name="_password" required="required" />
                 </div>
+                
                 <div class="form-group">
                     <button type="submit" class="btn-primary btn">EINLOGGEN</button>
                 </div>
+                {% if error %}
+                    <div class="form-group">
+                        <div class="error">
+                            <span class="form-error-icon badge badge-danger text-uppercase">Fehler</span>
+                            <span class="form-error-message">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+                        </div>
+                        
+                    </div>
+                {% endif %}
             </form>
         </div>
+       
     </section>
 {% endblock %}
