@@ -30,16 +30,12 @@
 
         .experience-content {
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             justify-content: flex-start;
             align-items: center;
             margin-left: 32px;
             margin-right: 32px;
             gap: 80px;
-        }
-
-        .right {
-            justify-content: flex-end;
         }
 
         .experience-content-text p {
@@ -49,6 +45,40 @@
 
         .experiene-content-link {
             margin-top: 8px;
+        }
+
+        @media screen and (max-width: 835px){
+            .experience-content {
+                margin-left: 16px;
+                margin-right: 16px;
+            }
+
+            .experience-content-img {
+                width: 320px;
+                height: 210px;
+            }
+        }
+
+        @media screen and (max-width: 650px){
+            .experience-content {
+                gap: 10px;
+            }
+
+            .experience-content {
+                margin-left: 8px;
+                margin-right: 8px;
+            }
+
+            .experience-content-img {
+                width: 220px;
+                height: 110px;
+            }
+        }
+
+        @media screen and (max-width: 550px){
+            .experience-content-text p {
+                font-size: 18px;
+            }
         }
         
     </style>

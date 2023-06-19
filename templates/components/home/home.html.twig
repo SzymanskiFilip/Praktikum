@@ -1,8 +1,5 @@
 {% block style %}
     <style>
-        @media screen and (max-width: 1020px) {
-
-        }
         @media screen and (max-width: 1360px) {
             #home{
                 height: calc(100dvh - 55px);
@@ -13,6 +10,13 @@
             height: 100dvh;
             background-color: rgb(var(--color-primary-darker));
             display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
         }
@@ -52,12 +56,33 @@
             margin: 0;
             padding: 0;
         }
+
+        @media screen and (max-width: 520px){
+            .image-holder {
+                width: 200px;
+                margin: 0;
+            }
+
+            .image-holder img:nth-child(1){
+                width: 200px;
+                height: auto;
+            }
+
+            .image-holder img:nth-child(2){
+                width: 100px;
+                height: auto;
+            }
+
+            .name-col h1{
+                font-size: 48px;
+            }
+        }
     </style>
 {% endblock %}
 
 {% block body %}
     <section id="home" class="home">
-        <div>
+        <div class="col">
             <div class="name-col">
                 <h1>Filip</h1>
                 <h1>Szymanski</h1>
