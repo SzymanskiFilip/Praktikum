@@ -36,6 +36,7 @@
             overflow: hidden;
             box-shadow: 0 10px 10px rgb(var(--color-primary-darker));
             background-color: rgb(var(--color-primary-darker));
+            cursor: pointer;
        }
 
        .text-circle h2 {
@@ -145,7 +146,7 @@
 
        <section class="experties-columns">
             <div class="column">
-                <div class="text-circle">
+                <div class="text-circle" id="btn1">
                     <h2>Sprachen</h2>
                     <div class="circle" id="circle-1"></div>
                 </div>
@@ -156,7 +157,7 @@
             </div>
             
             <div class="column">
-                <div class="text-circle">
+                <div class="text-circle" id="btn2">
                     <h2>Frameworks</h2>
                     <div class="circle" id="circle-2"></div>
                 </div>
@@ -167,7 +168,7 @@
             </div>
 
             <div class="column">
-                <div class="text-circle">
+                <div class="text-circle" id="btn3">
                     <h2>Datenbanken</h2>
                     <div class="circle" id="circle-3"></div>
                 </div>
@@ -190,22 +191,29 @@
 {% block javascripts %}
 <script>
 window.addEventListener('load', () => {
+    btn1 = document.getElementById('btn1');
+    btn2 = document.getElementById('btn2');
+    btn3 = document.getElementById('btn3');
+    let buttons = [btn1, btn2, btn3]
+
     circle1 = document.getElementById("circle-1");
     circle2 = document.getElementById("circle-2");
     circle3 = document.getElementById("circle-3");
+    let circles = [circle1, circle2, circle3]
 
     column1 = document.getElementById("column-1");
     column2 = document.getElementById("column-2");
     column3 = document.getElementById("column-3");
-
-    let circles = [circle1, circle2, circle3]
     let columns = [column1, column2, column3]
-    for(let i = 0; i < circles.length; i++){
-        circles[i].addEventListener('click', () => {
+
+    for(let i = 0; i < buttons.length; i++){
+        buttons[i].addEventListener('click', () => {
             circles[i].classList.toggle('circle-rotated');
             columns[i].classList.toggle('moved');
         })
     }
+
+    
 })
 </script>
 {% endblock %}
