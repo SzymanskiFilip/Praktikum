@@ -30,6 +30,13 @@ class ContactType extends AbstractType
          * - Senden (Nachricht senden) --> SubmitType
          *
          */
+
+         $builder->add('name', TextType::class);
+         $builder->add('email', EmailType::class);
+         $builder->add('subject', TextType::class);
+         $builder->add('message', TextareaType::class);
+         $builder->add('senden', SubmitType::class);
+
     }
 
     public function configureOptions(OptionsResolver $resolver)
