@@ -132,6 +132,7 @@ class IndexController extends AbstractController
          * Das Ergebnis, welches ein boolischer Wert ist, wird der Variable 'showDownloadButton' zugewiesen.
          */
         $showDownloadButton = $this->hashService->validateHash($request);
+        
 
         // render template
         /*
@@ -168,6 +169,13 @@ class IndexController extends AbstractController
          * Wenn nicht, dann returne einen Response mit der Meldung, dass man nicht autorisiert ist: 'Not authorized'.
          * Füge den passenden HTTP Response Code an.
          */
+        if($this->hashService->validateHash($request)){
+
+        } else {
+            $res = new Response('Error hash not valid' . $this->hashService->getHash($request) , 401);
+            return $res;
+        }
+        
 
         /*
          * Zuerst bauen wir den Dateinamen des Dokumentes zusammen. Dazu gibt es in dieser Klasse eine Konstante, die
