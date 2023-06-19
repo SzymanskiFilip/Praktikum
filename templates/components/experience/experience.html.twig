@@ -20,9 +20,27 @@
             gap: 65px;
         }
 
+        .line {
+            width: calc(100vw - 30vw);
+            height: 0.1rem;
+            background-color: rgb(80, 79, 79);
+        }
+
+        .centerer {
+            display: none;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         @media screen and (max-width: 520px){
             .experience h1 {
                 font-size: 36px;
+            }
+        }
+
+        @media screen and (max-width: 680px){
+            .centerer {
+                display: block;
             }
         }
     </style>
@@ -65,6 +83,11 @@
 
         <div class="experience-element">
             {% for item in experiences %}
+                {% if loop.index0 != 0 %}
+                    <div class="centerer">
+                        <div class="line"></div>
+                    </div>
+                {% endif %}
                 {% include 'components/experience/experience-content.html.twig' with {'index': loop.index0}%}
             {% endfor %}</div>
     </section>
