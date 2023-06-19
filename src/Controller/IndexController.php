@@ -195,9 +195,9 @@ class IndexController extends AbstractController
          * Statuscode 404.
          */
         if(!$filesystem->exists($filename)){
-            return new Response('File doesnt exits', 404);
+            return new Response("File doesn't exist", 404);
         } else {
-            return new Response('file exists', 200);
+            return new BinaryFileResponse($filename, 200);
         }
 
         /*
