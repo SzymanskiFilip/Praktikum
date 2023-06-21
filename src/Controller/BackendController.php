@@ -55,15 +55,6 @@ class BackendController extends AbstractController
      */
     public function generateLink(Request $request, QueryService $queryService, Filesystem $filesystem, HashService $hashService) {
 
-        // get params from request
-        /*
-         * Die Informationen, welche wir zum Generieren des Links brauchen, befinden sich ebenfalls in dem request.
-         * Verwende den QueryService und die Funktion 'getQueryParameter', um die benötigten Daten aus dem Parameter
-         * herauszulesen.
-         *
-         * Weise das Ergebnis dieses Aufrufs in eine Variable, die 'params' heißt.
-         */
-
         $params = $queryService->getQueryParameter($request);
 
         // generate Folder if not exist
@@ -71,35 +62,14 @@ class BackendController extends AbstractController
 
         // build hash
         $currentTime = time();
-        /*
-         * Die Hash Generierung:
-         * Mithilfe des 'hashService' und der Funktion 'generateHash' kannst du dir einen Hash generieren lassen.
-         * Speichere diesen in eine Variable ('hash')
-         */
-        //TODO: Change recipient to the one assigned while generating the link
+
         $hash = $hashService->generateHash($currentTime, $params['recipient'], 'sha256');
 
         // create file with hash as filename
         $filesystem->touch(self::HASH_FILES_BASE_URL . '/' . $hash . '.txt');
 
-        // build data for File
-        /*
-         * Erstelle eine Variable mit dem Namen 'dayMultiplier'. Diese soll einen ganzzahligen Wert enthalten. Dieser
-         * Wert ist die Anzahl an Sekunden, die ein Tag besitzt.
-         */
         $dayMultiplier = 60 * 60 * 24;
 
-        /*
-         * Nun soll der Zeitpunkt berechnet werden, an dem der Link nicht mehr gültig ist. Zuerst betrachten wir nur die
-         * zeitliche Komponente.
-         *
-         * Der Zeitpunkt wird mit folgender Formel berechnet:
-         * [Zeitpunkt der Ungültigkeit] = [aktueller Zeitpunkt] + [Anzahl an Sekunden pro Tag] * [Die Anzahl an Tage die der Link gültig ist]
-         *
-         * Das Ergebnis dieser Rechnung soll in einer Variable gespeichert werden, welche 'expireTime' heißt
-         *
-         */
-        //TODO: change to days
         $expireTime = $currentTime + $dayMultiplier * $params['expiresInLinkCalls'];
 
         // Syntax:
@@ -171,29 +141,7 @@ class BackendController extends AbstractController
      */
     public function removeUploadedCV(Filesystem $filesystem): Response
     {
-        //  build the filename
-        /*
-         * Da wir den Dateinamen des hochgeladenen Dokumentes mehrfach verwenden, bauen wir uns ihn einmal zusammen.
-         * Dazu gibt es in der Klasse IndexController eine Konstante, die 'CV_ASSET_DIR' heist. In dieser Konstante ist
-         * der Pfad zum Ordner, indem die Datei liegt gespeichert. Als Nächstes benötigen wir noch die Konstante
-         * 'DIRECTORY_SEPARATOR'. Diese enthält je nach Betriebssystem das Zeichen, mit welchem ein Pfad getrennt ist.
-         * Zuletzt befindet sich im IndexController noch eine weitere Konstante. Die Konstante mit dem Namen:
-         * 'CV_ASSET_FILENAME'.
-         *
-         * Verbinde diese drei Konstanten miteinander und speichere sie in eine Variable ('filename')
-         */
         $path = IndexController::CV_ASSET_DIR . '/' . IndexController::CV_ASSET_FILENAME;
-
-        // check if file with filename exists
-        /*
-         * Der Service Filesystem spiegelt unser Dateisystem auf dem Rechner/ Server wider. Mithilfe des Filesystems
-         * können wir überprüfen, ob die Datei überhaupt existiert. Dazu verwende die Funktion 'exist' der du den
-         * filename übergibst.
-         *
-         * Das Ergebnis wird in einer If-Bedingung überprüft.
-         *
-         * Ist die Datei vorhanden, hilft uns die Funktion 'remove' von dem Filesystem Service die Datei zu löschen.
-         */
         if($filesystem->exists($path)){
             $filesystem->remove($path);
         }

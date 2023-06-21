@@ -74,25 +74,6 @@ class IndexController extends AbstractController
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
 
-        // load form input from request if they are available
-        /*
-         * Damit das Formular überprüfen kann, ob es schon einmal ausgefüllt wurde, übergeben wir dem Formular den
-         * aktuellen Request, indem alle notwendigen Informationen stehen.
-         *
-         * Benutze dazu die Funktion 'handleRequest' des Formulars
-         */
-        // check if form is submitted and if all values are syntactically correct
-        /*
-         * Nur wenn das Formular schon einmal ausgefüllt wurde und die eingegebenen Daten valide sind, sollte eine
-         * Email versendet werden.
-         *
-         * Überprüfe nun mithilfe des Formulars und den Funktionen 'isSubmitted' und 'isValid' innerhalb eines
-         * if-Statements ob dieser Zustand zutrifft.
-         *
-         * Dabei markieren die Kommentare
-         * '## Start des If-Blocks' und '## Ende des If-Blocks'
-         * den Bereich welcher innerhalb des if-blockes steht.
-         */
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             // ## Start des If-Blocks
@@ -124,34 +105,7 @@ class IndexController extends AbstractController
         // ## Ende des If-Blocks
         }
 
-        
-
-        /*
-         * Überprüfe mithilfe des 'hashService' und der Funktion 'validateHash', ob der Hash welcher möglicherweise
-         * in der URL steht valide ist.
-         * Das Ergebnis, welches ein boolischer Wert ist, wird der Variable 'showDownloadButton' zugewiesen.
-         */
         $showDownloadButton = $this->hashService->validateHash($request);
-        
-
-        // render template
-        /*
-         * Als Letztes müssen, wir noch das Formular rendern also dass es generiert wird. Dies wird mit der
-         * Funktion 'renderForm', welche ebenfalls in dieser Klasse ist, gemacht. Die Funktion benötigt zwei Parameter:
-         * - Der Name des Templates, welches zum rendern verwendet werden soll: landingpage/index.html.twig
-         * - Der Context in Form eines Arrays, welcher die Daten zum rendern enthält
-         *
-         * Der Context muss folgende Daten enthalten:
-         * - das 'form' welches wir oben erstellt haben
-         * - die Variable 'showDownloadButton'
-         * - und der Hash welchen du mithilfe folgendem Aufruf bekommst:
-         *      - "$this->hashService->getHash($request)"
-         *
-         * Den Rückgabewert der Funktion werden wir dieses mal nicht in eine Variable speichern, sondern werden ihn
-         * direkt mit dem Schlüsselwort 'return' zurückgeben.
-         *
-         */
-
         return $this->renderForm('landingpage/index.html.twig', [
                 'form' => $form, 
                 'showDownloadButton' => $showDownloadButton, 
