@@ -168,29 +168,12 @@ class IndexController extends AbstractController
         if ($this->hashService->validateHash($request)) {
             $filename = self::CV_ASSET_DIR . '/' . self::CV_ASSET_FILENAME;
             if(!$filesystem->exists($filename)){
-                return new Response("File doesn't exist", 404);
+                return new Response("File doesn't exist", 401);
             } else {
                 return new BinaryFileResponse($filename, 200);
             }
         } else {
-
-            $res = new Response('Error hash not valid' . $this->hashService->getHash($request), 401, );
             return $this->redirectToRoute('home');
-            return $res;
         }
-        return "hello";
-        /*
-         * Überprüfe mithilfe des HashServices, ob der im Request übergebene Hash valide ist.
-         *
-         * Wenn nicht, dann returne einen Response mit der Meldung, dass man nicht autorisiert ist: 'Not authorized'.
-         * Füge den passenden HTTP Response Code an.
-         */
-        /*
-
-
-
-        /*
-
-        */
     }
 }

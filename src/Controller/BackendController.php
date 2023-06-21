@@ -35,7 +35,7 @@ class BackendController extends AbstractController
     public function __construct(string $baseUrl)
     {
         // set given baseUrl
-        $this->baseUrl = $baseUrl;
+        $this->baseUrl = "http://praktikum.lndo.site";
     }
 
     /**
