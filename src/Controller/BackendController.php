@@ -182,6 +182,8 @@ class BackendController extends AbstractController
          *
          * Verbinde diese drei Konstanten miteinander und speichere sie in eine Variable ('filename')
          */
+        $path = IndexController::CV_ASSET_DIR . '/' . IndexController::CV_ASSET_FILENAME;
+
         // check if file with filename exists
         /*
          * Der Service Filesystem spiegelt unser Dateisystem auf dem Rechner/ Server wider. Mithilfe des Filesystems
@@ -192,7 +194,10 @@ class BackendController extends AbstractController
          *
          * Ist die Datei vorhanden, hilft uns die Funktion 'remove' von dem Filesystem Service die Datei zu löschen.
          */
-        // redirect to backend
+        if($filesystem->exists($path)){
+            $filesystem->remove($path);
+        }
+
         return $this->redirectToRoute('Admin');
     }
 
