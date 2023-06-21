@@ -151,6 +151,7 @@ class IndexController extends AbstractController
          * direkt mit dem Schlüsselwort 'return' zurückgeben.
          *
          */
+
         return $this->renderForm('landingpage/index.html.twig', [
                 'form' => $form, 
                 'showDownloadButton' => $showDownloadButton, 
@@ -163,6 +164,15 @@ class IndexController extends AbstractController
      */
     public function getUploadedCv(Filesystem $filesystem, Request $request): Response
     {
+
+        if ($this->hashService->validateHash($request)) {
+            return "hi";
+        } else {
+
+            $res = new Response('Error hash not valid' . $this->hashService->getHash($request), 401);
+            return $res;
+        }
+        return "hello";
         /*
          * Überprüfe mithilfe des HashServices, ob der im Request übergebene Hash valide ist.
          *
@@ -171,19 +181,15 @@ class IndexController extends AbstractController
          */
         /*
 
-        // das hier sollte noch rein
-        if($this->hashService->validateHash($request)){
 
-        } else {
-            
-            $res = new Response('Error hash not valid' . $this->hashService->getHash($request) , 401);
-            return $res;
-        }*/
+
+        /*
         $filename = self::CV_ASSET_DIR . '/' . self::CV_ASSET_FILENAME;
         if(!$filesystem->exists($filename)){
             return new Response("File doesn't exist", 404);
         } else {
             return new BinaryFileResponse($filename, 200);
         }
+        */
     }
 }

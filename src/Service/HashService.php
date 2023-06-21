@@ -85,6 +85,7 @@ class HashService
 
     public function getHash(Request $request): ?string
     {
+
         // check if an query is available
         if ($request->getQueryString()) {
             // parse query params

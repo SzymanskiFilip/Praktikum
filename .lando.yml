@@ -3,3 +3,4 @@ recipe: lamp
 config:
   webroot: public
   php: 7.4
+  xdebug: 'develop,debug'

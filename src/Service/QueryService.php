@@ -33,6 +33,15 @@ class QueryService
          * Verwende das Array 'queryParams'
          */
 
+        $queryString = $request->getQueryString();
+        $params = explode("&", $queryString);
+
+        for($x = 0; $x < count($params); $x++){
+            $keyAndValue = explode("=", $params[$x]);
+            $queryParams[$keyAndValue[0]] = $keyAndValue[1];
+        }
+
+
         // return the parsed query params
         return $queryParams;
     }
