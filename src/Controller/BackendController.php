@@ -64,6 +64,8 @@ class BackendController extends AbstractController
          * Weise das Ergebnis dieses Aufrufs in eine Variable, die 'params' heißt.
          */
 
+        $params = $queryService->getQueryParameter($request);
+
         // generate Folder if not exist
         $filesystem->mkdir(self::HASH_FILES_BASE_URL);
 
@@ -74,6 +76,8 @@ class BackendController extends AbstractController
          * Mithilfe des 'hashService' und der Funktion 'generateHash' kannst du dir einen Hash generieren lassen.
          * Speichere diesen in eine Variable ('hash')
          */
+        //TODO: Change recipient to the one assigned while generating the link
+        $hash = $hashService->generateHash($currentTime, $params['recipient'], 'sha256');
 
         // create file with hash as filename
         $filesystem->touch(self::HASH_FILES_BASE_URL . '/' . $hash . '.txt');
@@ -83,6 +87,7 @@ class BackendController extends AbstractController
          * Erstelle eine Variable mit dem Namen 'dayMultiplier'. Diese soll einen ganzzahligen Wert enthalten. Dieser
          * Wert ist die Anzahl an Sekunden, die ein Tag besitzt.
          */
+        $dayMultiplier = 60 * 60 * 24;
 
         /*
          * Nun soll der Zeitpunkt berechnet werden, an dem der Link nicht mehr gültig ist. Zuerst betrachten wir nur die
@@ -94,6 +99,8 @@ class BackendController extends AbstractController
          * Das Ergebnis dieser Rechnung soll in einer Variable gespeichert werden, welche 'expireTime' heißt
          *
          */
+        //TODO: change to days
+        $expireTime = $currentTime + $dayMultiplier * $params['expiresInLinkCalls'];
 
         // Syntax:
         //      currentTime;recipient;dayExpirationTime;callExpirationNumber;numberOfCalls

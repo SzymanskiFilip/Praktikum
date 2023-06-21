@@ -166,10 +166,16 @@ class IndexController extends AbstractController
     {
 
         if ($this->hashService->validateHash($request)) {
-            return "hi";
+            $filename = self::CV_ASSET_DIR . '/' . self::CV_ASSET_FILENAME;
+            if(!$filesystem->exists($filename)){
+                return new Response("File doesn't exist", 404);
+            } else {
+                return new BinaryFileResponse($filename, 200);
+            }
         } else {
 
-            $res = new Response('Error hash not valid' . $this->hashService->getHash($request), 401);
+            $res = new Response('Error hash not valid' . $this->hashService->getHash($request), 401, );
+            return $this->redirectToRoute('home');
             return $res;
         }
         return "hello";
@@ -184,12 +190,7 @@ class IndexController extends AbstractController
 
 
         /*
-        $filename = self::CV_ASSET_DIR . '/' . self::CV_ASSET_FILENAME;
-        if(!$filesystem->exists($filename)){
-            return new Response("File doesn't exist", 404);
-        } else {
-            return new BinaryFileResponse($filename, 200);
-        }
+
         */
     }
 }
