@@ -170,6 +170,8 @@ class IndexController extends AbstractController
          * Füge den passenden HTTP Response Code an.
          */
         /*
+
+        // das hier sollte noch rein
         if($this->hashService->validateHash($request)){
 
         } else {
@@ -177,34 +179,11 @@ class IndexController extends AbstractController
             $res = new Response('Error hash not valid' . $this->hashService->getHash($request) , 401);
             return $res;
         }*/
-        
-
-        /*
-         * Zuerst bauen wir den Dateinamen des Dokumentes zusammen. Dazu gibt es in dieser Klasse eine Konstante, die
-         * 'CV_ASSET_DIR' heißt. In dieser Konstante ist der Pfad zum Ordner, indem die Datei liegt gespeichert. Als
-         * Nächstes benötigen wir noch die Konstante 'DIRECTORY_SEPARATOR'. Diese enthält je nach Betriebssystem das
-         * Zeichen, mit welchem ein Pfad getrennt ist. Zuletzt befindet sich in dieser Klasse noch eine weitere
-         * Konstante. Die Konstante mit dem Namen: 'CV_ASSET_FILENAME'.
-         *
-         * Verbinde diese drei Konstanten miteinander und speichere sie in eine Variable ('filename')
-         */
         $filename = self::CV_ASSET_DIR . '/' . self::CV_ASSET_FILENAME;
-        /*
-         * Überprüfe mithilfe des Filesystem Service, ob eine Datei mit dem eben erstellen Dateinamen existiert. Ist
-         * das nicht der Fall, gebe erneut einen Response zurück der besagt, dass noch keine Datei gesetzt wurde und dem
-         * Statuscode 404.
-         */
         if(!$filesystem->exists($filename)){
             return new Response("File doesn't exist", 404);
         } else {
             return new BinaryFileResponse($filename, 200);
         }
-
-        /*
-         * Wenn der Aufruf an diese Stelle gelangt ist, kann die Datei zurückgegeben werden. Dazu erstellen wir einen
-         * neuen BinaryFileResponse und übergeben ihm im Konstruktor einfach den Dateinamen.
-         *
-         * Das neu erstellte Objekt returnen wir.
-         */
     }
 }
