@@ -33,14 +33,28 @@ jobs:
       - name: Build static html
         run: bin/console app:generate-html
 
-      - name: Archive artifacts
-        uses: actions/upload-artifact@v3
+      - name: Archive artifact
+        run: |
+          chmod -c -R +rX "$INPUT_PATH" | while read line; do
+            echo "::warning title=Invalid file permissions automatically fixed::$line"
+          done
+          tar \
+            --dereference --hard-dereference \
+            --directory "$INPUT_PATH" \
+            -cvf "$RUNNER_TEMP/artifact.tar" \
+            --exclude=.git \
+            --exclude=.github \
+            --exclude=.htaccess \
+            --exclude=index.php \
+            .
+        env:
+          INPUT_PATH: public
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@main
         with:
-          name: dist
-          path: |
-            public
-            !public/.htaccess
-            !public/index.php
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
 
   deploy:
     name: TDB
