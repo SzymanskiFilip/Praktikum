@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Praktikum</title>
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
+        <link rel="stylesheet" href="./style.css">
+
+            <script>
+        function onNav() {
+            var element = document.getElementById("toggle");
+            element.classList.toggle("toggle--on");
+
+            var navigation = document.getElementById("menu-holder");
+            navigation.classList.toggle("toggle--on");
+        }
+    </script>
+
+            <script>
+        window.addEventListener('load', () => {
+            const inputs = document.getElementById('form').getElementsByClassName('form-control');
+            for (let input of inputs) {
+                const eventHandler = (event) => {
+                    const label = event.target.parentNode.querySelector('label');
+                    if ('' !== event.target.value && label.classList.contains('form-group-label-focus')) {
+                        return;
+                    }
+                    label.classList.toggle('form-group-label-focus');
+                };
+
+                input.addEventListener('focusin', eventHandler);
+                input.addEventListener('focusout', eventHandler);
+
+                if ('' !== input.value) {
+                    input.dispatchEvent(new Event('focusout'))
+                }
+            }
+        })
+    </script>
+
+
+        <script>
+        window.addEventListener('load', () => {
+            let observer = new IntersectionObserver(entries => {
+                for (const entry of entries) {
+                    if (true === entry.isIntersecting) {
+                        const percentage = entry.target.dataset.percentage;
+                        entry.target.style.width = percentage + '%';
+                    }
+                }
+            },{ threshold: [0.3] })
+            const elements = [...document.getElementsByClassName('js-ProgressBarTop')]
+            elements.forEach(item => {
+                observer.observe(item)
+            })
+        })
+    </script>
+
+        <style>
+        #content {
+            margin-left: 380px;
+            width: calc(100% - 380px);
+        }
+
+        @media screen and (max-width: 1599px){
+            #content {
+            margin-left: 320px;
+            width: calc(100% - 320px);
+            }
+        }
+
+        @media screen and (max-width: 1360px){
+            #content {
+                margin-left: 90px;
+                width: calc(100% - 90px);
+            }
+        }
+
+        @media screen and (max-width: 1020px) {
+            #content {
+                margin-left: 0px;
+                width: 100%;
+            }
+        }
+
+    </style>
+
+        <style>
+        .nav-points {
+            color: rgb(var(--color-primary-lighter));
+            padding: 5px 0;
+            font-size: 28px;
+            line-height: 40px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+
+        .header-holder {
+            position: fixed;
+            background: rgb(var(--color-primary-dark));
+            width: 380px;
+            height: 100vh;
+            z-index: 1;
+            top:0;
+        }
+
+        .toggle-holder {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 3;
+        }
+
+        #toggle {
+            height: 32px;
+            width: 30px;
+            position: relative;
+        }
+
+        #toggle:before {
+            transform: translate3d(0,-8px,0px);
+            width: 21px;
+            margin-left: 0;
+            content: '';
+            height: 3px;
+            position: absolute;
+            transform-origin: 50% 50%;
+            transition: all .25s;
+            top:8px;
+            background: rgb(var(--color-primary-lighter));
+        }
+        #toggle:after {
+            transform: translate3d(0,8px,0px);
+            width: 30px;
+            margin-left: 0;
+            content: '';
+            height: 3px;
+            position: absolute;
+            transform-origin: 50% 50%;
+            top:8px;
+            background: rgb(var(--color-primary-lighter));
+        }
+
+        #toggle .menu-line {
+            width: 13px;
+            height: 3px;
+            position: absolute;
+            transition: all .25s;
+            margin-left: 0;
+            top: 8px;
+            background-color: rgb(var(--color-primary-lighter));
+        }
+
+        #toggle.toggle--on .menu-line{
+            opacity: 0;
+        }
+
+        #toggle.toggle--on:before {
+            transform: rotate3d(0,0,1,
+            45deg) translate3d(0,0,0);
+            background-color: rgb(var(--color-primary-lighter));
+            margin-left: 0;
+            width: 26px;
+        }
+
+        #toggle.toggle--on:after {
+            transform: rotate3d(0,0,1,
+            -45deg);
+            background-color: rgb(var(--color-primary-lighter));
+            width: 26px;
+        }
+        #menu-holder {
+            background-color: rgb(var(--color-primary-light));
+            width: 380px;
+            height: 100%;
+            min-height: 100vh;
+            top: 0;
+            left: 0;
+            position: absolute;
+            transform: translateX(-400px);
+            transition: transform .3s linear;
+            z-index: 1;
+            overflow: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        #menu-holder.toggle--on {
+            transform: translateX(0);
+        }
+
+        .menu-holder--points {
+            width: fit-content;
+            height: fit-content;
+            padding-left: 75px;
+        }
+
+        .menu-item {
+            list-style: none;
+        }
+        .menu-item:not(:first-child) {
+            margin-top: 24px;
+        }
+
+        @media screen and (max-width: 1599px){
+            .header-holder {
+                width: 320px;
+            }
+
+            #menu-holder {
+                width: 320px;
+                transform: translateX(-320px);
+            }
+        }
+        @media screen and (max-width: 1360px){
+            .header-holder {
+                width: 90px;
+            }
+        }
+        @media screen and (max-width: 1020px){
+            .header-holder {
+                height: 55px;
+                width: 100%;
+                z-index: 2;
+            }
+
+            .toggle-holder {
+                top: 15px;
+                left: 15px;
+            }
+        }
+
+        @media screen and (max-width: 650px) {
+            #menu-holder {
+                width: 100%;
+                transform: translateX(-100%);
+                overflow: auto;
+            }
+        }
+    </style>
+
+        <style>
+        .home {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .home-element {
+            background-image:url(./img/Profilpicture.jpg);
+            padding: 72px 32px 0;
+            height: calc(100vh - 72px);
+            display: flex;
+            flex-direction: column;
+            align-content: space-between;
+            align-items: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .element--text {
+            padding: 150px 32px;
+        }
+
+        .social-media {
+            margin-top: auto;
+            margin-bottom:  32px;
+        }
+
+        .social-media--a {
+            padding: 0 1rem;
+        }
+
+        .download {
+            margin-top: auto;
+        }
+
+        @media screen and (max-width: 1020px) {
+            .site-content {
+                padding-top: 75px;
+                padding-bottom: 75px;
+            }
+        }
+        @media screen and (max-width: 1360px) {
+            .site-content {
+                margin-left: 90px;
+                width: calc(100% - 90px);
+            }
+        }
+    </style>
+
+        <style>
+        .hobby {
+            background-color: rgb(var(--color-primary-darker));
+            padding: 80px;
+        }
+
+        .hobby-element{
+            max-width: 1024px;
+            display: grid;
+            grid-template-columns: 60% auto;
+            grid-gap: 32px;
+        }
+        .hobby-cards{
+            display: grid;
+            grid-gap: 32px;
+            width: 100%;
+            grid-template-columns: repeat(2, 50%);
+        }
+
+        .hobby-text {
+            width: auto;
+            padding: 0 32px;
+        }
+
+        @media screen and (max-width: 1020px) {
+            .hobby-element {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+
+        @media screen and (max-width: 650px){
+            .hobby {
+                min-height: max-content !important;
+                padding: 16px;
+            }
+            .hobby-cards {
+                grid-template-columns: repeat(1, 100%);
+            }
+
+            .hobby-text {
+                padding: 0 16px;
+            }
+        }
+    </style>
+
+        <style>
+        .experience {
+            background-color: rgb(var(--color-primary-darker));
+            padding: 80px;
+        }
+
+        .experience-element {
+            max-width: 1024px;
+            display: grid;
+            grid-gap: 32px;
+        }
+
+        @media screen and (max-width: 1020px){
+            .experience {
+                padding: 32px;
+            }
+        }
+    </style>
+
+        <style>
+        .career {
+            background-color: rgb(var(--color-primary-darker));
+            padding: 80px;
+        }
+
+        ul.career-element {
+            max-width: 1024px;
+            margin: 0;
+            padding: 0 0 0 64px;
+            -webkit-transform: translateZ(0);
+        }
+
+        @media screen and (max-width: 1020px){
+            .career {
+                padding: 32px;
+            }
+        }
+    </style>
+
+        <style>
+        .expertise {
+            background-color: rgb(var(--color-primary-darker));
+            padding: 80px;
+        }
+        .expertise-element{
+            max-width: 1024px;
+            display: grid;
+            grid-gap: 32px;
+        }
+        @media screen and (max-width: 650px){
+            .expertise {
+                padding: 24px 80px 24px 24px;
+            }
+        }
+    </style>
+        <style>
+        .c-ExpertiseItem {
+            margin-bottom: 32px;
+        }
+        .c-ExpertiseItem .c-ExpertiseItem__progressBarContainer {
+            display: grid;
+            grid-template-columns: 90% auto;
+            grid-gap: 32px;
+            margin-bottom: 32px;
+        }
+        .c-ExpertiseItem .c-ExpertiseItem__progressBarContainer .c-ProgressBar__percentage > h3{
+            margin-bottom: 0px;
+            margin-top: -8px;
+        }
+        .c-ExpertiseItem .c-ExpertiseItem__progressBarContainer .c-ProgressBar__bottom {
+            width: 100%;
+            height: 16px;
+            background-color: rgb(var(--color-primary-dark));
+        }
+        .c-ExpertiseItem .c-ExpertiseItem__progressBarContainer .c-ProgressBar__top {
+            height: 32px;
+            margin-top: -8px;
+            background-color: rgb(var(--color-primary-light));
+            transition: width 2s;
+            width: 0%;
+        }
+    </style>
+
+
+        <style>
+        .contact {
+            background-color: rgb(var(--color-primary-darker));
+            padding: 80px;
+            min-height: calc(100vh - 160px);
+        }
+
+        @media screen and (max-width: 650px) {
+            .contact {
+                min-height: max-content !important;
+                padding: 16px;
+            }
+        }
+
+        .contact-heading {
+            margin-bottom: 4rem;
+        }
+        .contact-element {
+            max-width: 1024px;
+            display: grid;
+            grid-template-columns: 30% auto;
+            grid-gap: 8px;
+        }
+        .contact-form {
+            width: auto;
+            padding: 0 32px;
+        }
+
+        @media screen and (max-width: 1020px) {
+            .contact-element {
+                display: flex;
+                flex-direction: column;
+            }
+            .contact-text {
+                margin-bottom: 4rem;
+            }
+            .contact-form {
+                padding: 0;
+            }
+        }
+
+        @media screen and (max-width: 650px){
+            .contact {
+                min-height: max-content !important;
+                padding: 16px;
+            }
+            .contact-form {
+                padding: 0;
+            }
+            .contact-text {
+                padding: 0 16px;
+            }
+        }
+    </style>
+
+        <style>
+        .form-group .btn {
+            width: 100%;
+            font-family: var(--font-family-base);
+            font-weight: var(--font-bold);
+            text-transform: uppercase;
+            color: rgb(var(--color-primary-darker));
+            margin-top: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: inline-block;
+            padding: 0 0.5rem;
+            margin-left: 0.5rem;
+            background-color: rgb(var(--color-primary-darker));
+            font-family: var(--font-family-base);
+            color: rgb(var(--color-primary-lighter));
+            font-weight: var(--font-light);
+            position: relative;
+            top: 30px;
+            transition: top .2s ease-in-out, font-size .2s ease-in-out;
+            text-transform: uppercase;
+        }
+
+        .form-group-label-focus {
+            font-size: 80%;
+            top: 11px !important;
+        }
+
+        .form-control {
+            display: block;
+            box-sizing: border-box;
+            width: 100%;
+            padding-top: 0.375rem;
+            padding-bottom: 0.375rem;
+            padding-left: 0.75rem;
+            color: rgb(var(--color-primary-normal));
+            background-color: rgb(var(--color-primary-darker));
+            font-family: var(--font-family-base);
+            font-weight: var(--font-light);
+            font-size: 1rem;
+            line-height: 1.5;
+            border: 1px solid rgb(var(--color-primary-normal));
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+        .form-control:focus {
+            border: 1px solid rgb(var(--color-primary-lighter));
+            transition: border .2s ease-in-out;
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+        }
+        .form-group button {
+            cursor: pointer;
+        }
+
+        .form-control.is-invalid {
+            border-color: #dc3545;
+        }
+        .d-block {
+            display: block !important;
+        }
+        .invalid-feedback {
+            display: none;
+            width: 100%;
+            margin-top: 0.25rem;
+            font-family: var(--font-family-base);
+            font-weight: var(--font-light);
+            font-size: 80%;
+            color: #dc3545;
+        }
+        .badge {
+            display: inline-block;
+            padding: .25em .4em;
+            font-family: var(--font-family-base);
+            font-weight: var(--font-light);
+            font-size: 75%;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            border-radius: .25rem;
+        }
+        .badge-danger {
+            color: #fff;
+            background-color: #dc3545;
+        }
+    </style>
+
+
+</head>
+<body>
+        <header class="header-holder">
+        <div class="toggle-holder">
+            <div id="toggle" onclick="onNav()">
+                <div class="menu-line"></div>
+            </div>
+        </div>
+        <div id="menu-holder">
+            <nav class="menu-holder--points">
+                <ul>
+                    <li class="menu-item">
+                        <a onclick="onNav()" class="nav-points" href="#home">Home</a>
+                    </li>
+                    <li class="menu-item">
+                        <a onclick="onNav()" class="nav-points" href="#hobby">Interessen</a>
+                    </li>
+                    <li class="menu-item">
+                        <a onclick="onNav()" class="nav-points" href="#experience">Erfahrungen</a>
+                    </li>
+                    <li class="menu-item">
+                        <a onclick="onNav()" class="nav-points" href="#career">Werdegang</a>
+                    </li>
+                    <li class="menu-item">
+                        <a onclick="onNav()" class="nav-points" href="#expertise">Kenntnisse</a>
+                    </li>
+                    <li class="menu-item">
+                        <a onclick="onNav()" class="nav-points" href="#contact">Kontakt</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+            <script>
+
+    </script>
+    <style>
+        #plant-profile {
+
+            padding: 150px 32px;
+            color: white;
+        }
+
+        .infogroup {
+            display: block;
+            margin-bottom: 32px ;
+        }
+
+        @media screen and (max-width: 1360px){
+            .infogroup {
+                display: none;
+            }
+        }
+    </style>
+<div id="plant-profile">
+    <div class="infogroup">
+        <p class="bold color-primary-light text-uppercase">Name</p>
+        <p class="light"> Maria Mustermann </p>
+    </div>
+
+    <div class="infogroup">
+        <p class="bold color-primary-light text-uppercase">Schule</p>
+        <p class="light"> Realschule</p>
+    </div>
+
+    <div class="infogroup">
+        <p class="bold color-primary-light text-uppercase">E-Mail</p>
+        <p class="light"> m.muster@gmail.com </p>
+    </div>
+    <div class="infogroup">
+        <p class="bold color-primary-light text-uppercase">Telefon</p>
+        <p class="light"> +49 12345 67890</p>
+    </div>
+</div>
+
+    </header>
+
+    <div id="content">
+            <section id="home" class="home">
+        <div class="home-element">
+            <h1 class="text-center text-uppercase">Maria <br/> Mustermann</h1>
+                        <div class="social-media">
+                <a href="#" class="social-media--a color-primary-light bold"> INSTAGRAM </a>
+                <a href="#" class="social-media--a color-primary-light bold"> LINKEDIN </a>
+                <a href="#" class="social-media--a color-primary-light bold"> TWITTER </a>
+            </div>
+        </div>
+    </section>
+
+            
+    <section id="hobby" class="hobby">
+        <div class="hobby-element">
+            <span class="hobby-cards">
+                                        <script>
+
+    </script>
+    <style>
+        .card {
+            background-color: rgb(var(--color-primary-dark));
+        }
+
+        .card-content {
+            padding: 32px 32px 50px 32px;
+            color: rgb(var(--color-primary-lighter));
+        }
+
+        .card-content--icon {
+            min-height: 70px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+    </style>
+    <div class="card">
+        <div class="card-content">
+                            <div class="card-content--icon">
+                    <img src="./svg/nature.svg" width="60px">
+                </div>
+                        <h3>Umwelt </h3>
+            <p class="light color-primary-normal"> In meiner Freizeit verbringe ich gerne Zeit in der Natur und informiere mich über den Klimaschutz, sowie mir unbekannte Planzenarten.</p>
+        </div>
+    </div>
+                                        <script>
+
+    </script>
+    <style>
+        .card {
+            background-color: rgb(var(--color-primary-dark));
+        }
+
+        .card-content {
+            padding: 32px 32px 50px 32px;
+            color: rgb(var(--color-primary-lighter));
+        }
+
+        .card-content--icon {
+            min-height: 70px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+    </style>
+    <div class="card">
+        <div class="card-content">
+                            <div class="card-content--icon">
+                    <img src="./svg/camera.svg" width="60px">
+                </div>
+                        <h3>Fotografie </h3>
+            <p class="light color-primary-normal"> Während ich unterwegs bin schieße ich gerne mit meiner Canon 500D Bilder von der Natur und von schönen Momenten und Kulissen</p>
+        </div>
+    </div>
+                                        <script>
+
+    </script>
+    <style>
+        .card {
+            background-color: rgb(var(--color-primary-dark));
+        }
+
+        .card-content {
+            padding: 32px 32px 50px 32px;
+            color: rgb(var(--color-primary-lighter));
+        }
+
+        .card-content--icon {
+            min-height: 70px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+    </style>
+    <div class="card">
+        <div class="card-content">
+                            <div class="card-content--icon">
+                    <img src="./svg/clothing.svg" width="60px">
+                </div>
+                        <h3>Mode </h3>
+            <p class="light color-primary-normal"> Ich drücke mich gerne mit meinem Kleidungsstyle aus und beschäftige mich mit neuen Trends in der Mode Branche.</p>
+        </div>
+    </div>
+                                        <script>
+
+    </script>
+    <style>
+        .card {
+            background-color: rgb(var(--color-primary-dark));
+        }
+
+        .card-content {
+            padding: 32px 32px 50px 32px;
+            color: rgb(var(--color-primary-lighter));
+        }
+
+        .card-content--icon {
+            min-height: 70px;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+    </style>
+    <div class="card">
+        <div class="card-content">
+                            <div class="card-content--icon">
+                    <img src="./svg/code.svg" width="60px">
+                </div>
+                        <h3>Programmieren </h3>
+            <p class="light color-primary-normal"> In der Schule, sowie auch in meiner Freizeit, bereitet mir das Programmieren mit HTML, CSS und JavaScript viel Freude.</p>
+        </div>
+    </div>
+                            </span>
+            <span class="hobby-text">
+                <h2> Vorstellung meiner Person</h2>
+                <p class="light color-primary-normal">Mein Name ist Maria Mustermann. Ich bin 17 Jahre alt und besuche derzeit das Gymnasium XYZ in Musterstadt. Meine Interessen liegen im Kreativen und Nachhaltigen Bereich. Ich fotografiere gerne und achte sehr auf meinen CO2 Fußabdruck. In der Schule belege ich die Leistungskurse Englisch, Informatik und Chemie. Hierbei bringt mir in Informatik das Programmieren viel Freude, daher beschäftige ich mich hiermit auch in meiner Freizeit.
+                </p>
+            </span>
+        </div>
+    </section>
+
+        
+            <section id="experience" class="experience">
+        <h2 class="text-uppercase">Erfahrungen</h2>
+        <div class="experience-element">
+                                <script>
+
+    </script>
+    <style>
+        .experience-content {
+            display: flex;
+            grid-gap: 32px;
+        }
+
+        .experience-content-img {
+            aspect-ratio: 4/3;
+        }
+
+        .experience-content-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .experiene-content-link{
+            display: flex;
+            height: 100%;
+            align-items: flex-end;
+        }
+        .experiene-content-link img {
+            margin-right: 10px;
+        }
+
+        @media screen and (max-width: 650px) {
+            .experience-content {
+                flex-direction: column;
+            }
+
+            .experience-content-img {
+                aspect-ratio: 2/1;
+            }
+        }
+    </style>
+    <div class="experience-content">
+        <img class="experience-content-img" src="./img/code.png">
+
+        <span class="experience-content-text">
+            <h3> Praktikum - Webdesign</h3>
+            <p class="color-primary-normal"> 2016 habe ich in einer Werbe Agentur mein 3-wöchiges Praktikum im Bereich Webdesign mit einem positiven Feedback abgeschlossen.</p>
+                            <div class="experiene-content-link">
+                    <img src="./svg/union.svg" width="16px">
+                    <a href="www.hdnet.de" class="color-primary-light"> zur Website von HDNET</a>
+                </div>
+                    </span>
+    </div>
+                                <script>
+
+    </script>
+    <style>
+        .experience-content {
+            display: flex;
+            grid-gap: 32px;
+        }
+
+        .experience-content-img {
+            aspect-ratio: 4/3;
+        }
+
+        .experience-content-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .experiene-content-link{
+            display: flex;
+            height: 100%;
+            align-items: flex-end;
+        }
+        .experiene-content-link img {
+            margin-right: 10px;
+        }
+
+        @media screen and (max-width: 650px) {
+            .experience-content {
+                flex-direction: column;
+            }
+
+            .experience-content-img {
+                aspect-ratio: 2/1;
+            }
+        }
+    </style>
+    <div class="experience-content">
+        <img class="experience-content-img" src="./img/english.png">
+
+        <span class="experience-content-text">
+            <h3> Level 3 English for Business</h3>
+            <p class="color-primary-normal"> Am Ende der zehnten Klasse habe ich mein “LCCI Certificate” erworben, welches aussagt, dass ich die Prüfung für die C1 Stufe erfolgreich bestanden habe.</p>
+                            <div class="experiene-content-link">
+                    <img src="./svg/union.svg" width="16px">
+                    <a href="www.hdnet.de" class="color-primary-light"> zum Cambridge Assessments C1 Exam</a>
+                </div>
+                    </span>
+    </div>
+            </div>
+    </section>
+
+                <section id="career" class="career">
+        <h2 class="text-uppercase">Werdegang</h2>
+        <ul class="career-element">
+                                <script>
+
+    </script>
+    <style>
+        li.timeline-event {
+            margin: 0 0 48px 64px;
+            position: relative;
+            padding-top: 8px;
+            list-style: none;
+            transition: .3s;
+        }
+
+        .timline-event-date {
+            position: absolute;
+            left: -115px;
+            top: 2px;
+            transition: .3s;
+            color: rgb(var(--color-primary-light));
+            font-weight: 700;
+        }
+
+        .timeline-event-content {
+            margin-left: 48px;
+        }
+
+        span.timeline-circle {
+            position: absolute;
+            top: 0;
+            left: -32px;
+        }
+
+        span.timeline-circle:before {
+            content: "";
+            display: block;
+            width: 32px;
+            height: 32px;
+            border-radius: 90%;
+            border: 4px solid rgb(var(--color-primary-light));
+            position: absolute;
+            left: -16px;
+            top: 4px;
+            z-index: 1;
+            transition: .3s;
+        }
+
+        li.timeline-event:not(:last-child):before {
+            content: "";
+            width: 4px;
+            height: calc(100% - 20px);
+            position: absolute;
+            background-color: rgb(var(--color-primary-light));
+            left: -30px;
+            top: 58px; }
+
+        li.timeline-event span.timeline-circle:after {
+            content: "";
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            left: -8px;
+            top: 12px;
+            border-radius: 90%;
+            background-color: rgb(var(--color-primary-light));
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        li.timeline-event:hover span.timeline-circle:after {
+            opacity: 1;
+            transition: opacity .3s;
+        }
+
+        li.timeline-event:hover p {
+            color: rgb(var(--color-primary-lighter));
+            transition: color .3s ease-in-out;
+        }
+    </style>
+        <li class="timeline-event">
+            <span class="timeline-circle"></span>
+            <div> <p class="timeline-event-content"><b> 2010-2014</b>  ging ich in die Grundschule am See, dort habe ich mich in diversen Arbeitsgemeinschaften eingesetzt und ein Interesse für Kreativität entwickelt. </p></div>
+            <div class="timline-event-date"> <p class="color-primary-light"> 2010 </p></div>
+        </li>
+
+                                <script>
+
+    </script>
+    <style>
+        li.timeline-event {
+            margin: 0 0 48px 64px;
+            position: relative;
+            padding-top: 8px;
+            list-style: none;
+            transition: .3s;
+        }
+
+        .timline-event-date {
+            position: absolute;
+            left: -115px;
+            top: 2px;
+            transition: .3s;
+            color: rgb(var(--color-primary-light));
+            font-weight: 700;
+        }
+
+        .timeline-event-content {
+            margin-left: 48px;
+        }
+
+        span.timeline-circle {
+            position: absolute;
+            top: 0;
+            left: -32px;
+        }
+
+        span.timeline-circle:before {
+            content: "";
+            display: block;
+            width: 32px;
+            height: 32px;
+            border-radius: 90%;
+            border: 4px solid rgb(var(--color-primary-light));
+            position: absolute;
+            left: -16px;
+            top: 4px;
+            z-index: 1;
+            transition: .3s;
+        }
+
+        li.timeline-event:not(:last-child):before {
+            content: "";
+            width: 4px;
+            height: calc(100% - 20px);
+            position: absolute;
+            background-color: rgb(var(--color-primary-light));
+            left: -30px;
+            top: 58px; }
+
+        li.timeline-event span.timeline-circle:after {
+            content: "";
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            left: -8px;
+            top: 12px;
+            border-radius: 90%;
+            background-color: rgb(var(--color-primary-light));
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        li.timeline-event:hover span.timeline-circle:after {
+            opacity: 1;
+            transition: opacity .3s;
+        }
+
+        li.timeline-event:hover p {
+            color: rgb(var(--color-primary-lighter));
+            transition: color .3s ease-in-out;
+        }
+    </style>
+        <li class="timeline-event">
+            <span class="timeline-circle"></span>
+            <div> <p class="timeline-event-content"><b> 2014-2018</b>  habe ich mich in meiner Schule Gymansium XYZ in der Umwelt AG und in der Fotografie AG eingesetzt und hier meine Kenntnisse und Fähigkeiten in diesen Bereichen weiterhin ausgebaut. </p></div>
+            <div class="timline-event-date"> <p class="color-primary-light"> 2014 </p></div>
+        </li>
+
+                                <script>
+
+    </script>
+    <style>
+        li.timeline-event {
+            margin: 0 0 48px 64px;
+            position: relative;
+            padding-top: 8px;
+            list-style: none;
+            transition: .3s;
+        }
+
+        .timline-event-date {
+            position: absolute;
+            left: -115px;
+            top: 2px;
+            transition: .3s;
+            color: rgb(var(--color-primary-light));
+            font-weight: 700;
+        }
+
+        .timeline-event-content {
+            margin-left: 48px;
+        }
+
+        span.timeline-circle {
+            position: absolute;
+            top: 0;
+            left: -32px;
+        }
+
+        span.timeline-circle:before {
+            content: "";
+            display: block;
+            width: 32px;
+            height: 32px;
+            border-radius: 90%;
+            border: 4px solid rgb(var(--color-primary-light));
+            position: absolute;
+            left: -16px;
+            top: 4px;
+            z-index: 1;
+            transition: .3s;
+        }
+
+        li.timeline-event:not(:last-child):before {
+            content: "";
+            width: 4px;
+            height: calc(100% - 20px);
+            position: absolute;
+            background-color: rgb(var(--color-primary-light));
+            left: -30px;
+            top: 58px; }
+
+        li.timeline-event span.timeline-circle:after {
+            content: "";
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            left: -8px;
+            top: 12px;
+            border-radius: 90%;
+            background-color: rgb(var(--color-primary-light));
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        li.timeline-event:hover span.timeline-circle:after {
+            opacity: 1;
+            transition: opacity .3s;
+        }
+
+        li.timeline-event:hover p {
+            color: rgb(var(--color-primary-lighter));
+            transition: color .3s ease-in-out;
+        }
+    </style>
+        <li class="timeline-event">
+            <span class="timeline-circle"></span>
+            <div> <p class="timeline-event-content"><b> 2018</b>  durfte ich mein erstes Praktium in der Werbe Agentur FirstWEB absolvieren. Dort konnte ich einen ersten Einblick in den Beruf Webdesigner bekommen und habe mich in den drei Wochen viel mit Design Grundlagen, sowie HTML und ein wenig CSS beschäftigt. </p></div>
+            <div class="timline-event-date"> <p class="color-primary-light"> 2018 </p></div>
+        </li>
+
+                                <script>
+
+    </script>
+    <style>
+        li.timeline-event {
+            margin: 0 0 48px 64px;
+            position: relative;
+            padding-top: 8px;
+            list-style: none;
+            transition: .3s;
+        }
+
+        .timline-event-date {
+            position: absolute;
+            left: -115px;
+            top: 2px;
+            transition: .3s;
+            color: rgb(var(--color-primary-light));
+            font-weight: 700;
+        }
+
+        .timeline-event-content {
+            margin-left: 48px;
+        }
+
+        span.timeline-circle {
+            position: absolute;
+            top: 0;
+            left: -32px;
+        }
+
+        span.timeline-circle:before {
+            content: "";
+            display: block;
+            width: 32px;
+            height: 32px;
+            border-radius: 90%;
+            border: 4px solid rgb(var(--color-primary-light));
+            position: absolute;
+            left: -16px;
+            top: 4px;
+            z-index: 1;
+            transition: .3s;
+        }
+
+        li.timeline-event:not(:last-child):before {
+            content: "";
+            width: 4px;
+            height: calc(100% - 20px);
+            position: absolute;
+            background-color: rgb(var(--color-primary-light));
+            left: -30px;
+            top: 58px; }
+
+        li.timeline-event span.timeline-circle:after {
+            content: "";
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            left: -8px;
+            top: 12px;
+            border-radius: 90%;
+            background-color: rgb(var(--color-primary-light));
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        li.timeline-event:hover span.timeline-circle:after {
+            opacity: 1;
+            transition: opacity .3s;
+        }
+
+        li.timeline-event:hover p {
+            color: rgb(var(--color-primary-lighter));
+            transition: color .3s ease-in-out;
+        }
+    </style>
+        <li class="timeline-event">
+            <span class="timeline-circle"></span>
+            <div> <p class="timeline-event-content"><b> bis 2021</b>  besuche ich weiterhin das Gymnasium XYZ, wo ich voraussichtlich im Jahr 2022 mein Abitur mit den Prüfungsfächern Englisch, Informatik und Chemie absolvieren werde. </p></div>
+            <div class="timline-event-date"> <p class="color-primary-light"> 2021 </p></div>
+        </li>
+
+                    </ul>
+    </section>
+
+            
+    <div id="expertise" class="expertise">
+        <div class="expertise-element">
+            <h2 class="text-uppercase">Kenntnisse</h2>
+
+                                                    <div class="c-ExpertiseItem">
+        <div class="c-ExpertiseItem__progressBarContainer">
+            <div class="c-ProgressBar__bottom">
+                <div class="c-ProgressBar__top js-ProgressBarTop" data-percentage="65"></div>
+            </div>
+            <div class="c-ProgressBar__percentage">
+                <h3 class="bold">65%</h3>
+            </div>
+        </div>
+        <h3 class="color-primary-normal">Englisch</h3>
+    </div>
+
+                                                                    <div class="c-ExpertiseItem">
+        <div class="c-ExpertiseItem__progressBarContainer">
+            <div class="c-ProgressBar__bottom">
+                <div class="c-ProgressBar__top js-ProgressBarTop" data-percentage="25"></div>
+            </div>
+            <div class="c-ProgressBar__percentage">
+                <h3 class="bold">25%</h3>
+            </div>
+        </div>
+        <h3 class="color-primary-normal">JavaScript</h3>
+    </div>
+
+                                                                    <div class="c-ExpertiseItem">
+        <div class="c-ExpertiseItem__progressBarContainer">
+            <div class="c-ProgressBar__bottom">
+                <div class="c-ProgressBar__top js-ProgressBarTop" data-percentage="85"></div>
+            </div>
+            <div class="c-ProgressBar__percentage">
+                <h3 class="bold">85%</h3>
+            </div>
+        </div>
+        <h3 class="color-primary-normal">Fotografie</h3>
+    </div>
+
+                                                                    <div class="c-ExpertiseItem">
+        <div class="c-ExpertiseItem__progressBarContainer">
+            <div class="c-ProgressBar__bottom">
+                <div class="c-ProgressBar__top js-ProgressBarTop" data-percentage="45"></div>
+            </div>
+            <div class="c-ProgressBar__percentage">
+                <h3 class="bold">45%</h3>
+            </div>
+        </div>
+        <h3 class="color-primary-normal">Fitness</h3>
+    </div>
+
+                                                                    <div class="c-ExpertiseItem">
+        <div class="c-ExpertiseItem__progressBarContainer">
+            <div class="c-ProgressBar__bottom">
+                <div class="c-ProgressBar__top js-ProgressBarTop" data-percentage="90"></div>
+            </div>
+            <div class="c-ProgressBar__percentage">
+                <h3 class="bold">90%</h3>
+            </div>
+        </div>
+        <h3 class="color-primary-normal">Kreativität</h3>
+    </div>
+
+                            
+        </div>
+    </div>
+
+
+            </div>
+</body>
+</html>
