@@ -110,7 +110,7 @@ class IndexController extends AbstractController
                 'form' => $form, 
                 'showDownloadButton' => $showDownloadButton, 
                 'hash' => $this->hashService->getHash($request)
-            ]);
+        ]);
     }
 
     /**

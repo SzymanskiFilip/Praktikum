@@ -18,25 +18,27 @@ class ContactType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // Build the form which is rendered in the browser
-        /*
-         * Baue mithilfe des FormBuilders das Formular zusammen. Dazu füge die Felder hinzu welche angezeigt werden
-         * sollen. Verwende dazu die Funktion 'add'.
-         *
-         * Füge folgende Felder hinzu:
-         * - name (Name) --> TextType
-         * - email (Email) --> EmailType
-         * - subject (Betreff) --> TextType
-         * - message (Nachricht) --> TextareaType
-         * - Senden (Nachricht senden) --> SubmitType
-         *
-         */
-
-         $builder->add('name', TextType::class);
-         $builder->add('email', EmailType::class);
-         $builder->add('subject', TextType::class);
-         $builder->add('message', TextareaType::class);
-         $builder->add('senden', SubmitType::class);
-
+        $builder
+            ->add('name', TextType::class, [ // Add a text field for the name
+                'empty_data' => '',
+                'label' => 'Name',
+            ])
+            ->add('email', EmailType::class, [ // Add a text field which is of type 'email' for the email
+                'empty_data' => '',
+                'label' => 'Email',
+            ])
+            ->add('subject', TextType::class, [ // Add a text field for the subject
+                'empty_data' => '',
+                'label' => 'Betreff'
+            ])
+            ->add('message', TextareaType::class, [ // Add a text area (bigger text field) for the message
+                'empty_data' => '',
+                'label' => 'Nachricht',
+            ])
+            ->add('Senden', SubmitType::class, [ // Add a button to submit the form and send the email
+                'label' => 'Nachricht senden',
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
