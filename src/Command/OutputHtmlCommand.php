@@ -6,6 +6,7 @@ namespace App\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Form\FormView;
 
 class OutputHtmlCommand extends Command
 {
@@ -25,7 +26,7 @@ class OutputHtmlCommand extends Command
         $content = $this->twig->render('landingpage/index.html.twig', [
             'form' => null,
             'showDownloadButton' => false,
-            'hash' => null,
+            'hash' => null
         ]);
 
         \file_put_contents('public/index.html', $content);
