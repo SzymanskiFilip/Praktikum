@@ -96,7 +96,7 @@ class IndexController extends AbstractController
                 // render template
                 return $this->renderForm('landingpage/index.html.twig', [
                     'showDownloadButton' => $showDownloadButton,
-                    'form' => $form,
+                    'form' => $form
                 ]);
             }
 
