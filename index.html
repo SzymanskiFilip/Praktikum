@@ -1,0 +1,2020 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Praktikum</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
+
+            <script>
+        function onNav() {
+            var element = document.getElementById("toggle");
+            element.classList.toggle("toggle--on");
+
+            var navigation = document.getElementById("menu-holder");
+            navigation.classList.toggle("toggle--on");
+        }
+    </script>
+
+        <script>
+        window.addEventListener('load', () => {})
+    </script>
+
+
+    <script>
+window.addEventListener('load', () => {
+    btn1 = document.getElementById('btn1');
+    btn2 = document.getElementById('btn2');
+    btn3 = document.getElementById('btn3');
+    let buttons = [btn1, btn2, btn3]
+
+    circle1 = document.getElementById("circle-1");
+    circle2 = document.getElementById("circle-2");
+    circle3 = document.getElementById("circle-3");
+    let circles = [circle1, circle2, circle3]
+
+    column1 = document.getElementById("column-1");
+    column2 = document.getElementById("column-2");
+    column3 = document.getElementById("column-3");
+    let columns = [column1, column2, column3]
+
+    for(let i = 0; i < buttons.length; i++){
+        buttons[i].addEventListener('click', () => {
+            circles[i].classList.toggle('circle-rotated');
+            columns[i].classList.toggle('moved');
+        })
+    }
+
+    
+})
+</script>
+
+        <style>
+        #content {
+            margin-left: 380px;
+            width: calc(100% - 380px);
+        }
+
+        @media screen and (max-width: 1599px){
+            #content {
+            margin-left: 320px;
+            width: calc(100% - 320px);
+            }
+        }
+
+        @media screen and (max-width: 1360px){
+            #content {
+                margin-left: 90px;
+                width: calc(100% - 90px);
+            }
+        }
+
+        @media screen and (max-width: 1020px) {
+            #content {
+                margin-left: 0px;
+                width: 100%;
+            }
+        }
+
+    </style>
+
+        <style>
+        .nav-points {
+            color: rgb(var(--color-primary-lighter));
+            padding: 5px 0;
+            font-size: 28px;
+            line-height: 40px;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+
+
+        .header-holder {
+            position: fixed;
+            background: rgb(var(--color-primary-dark));
+            width: 380px;
+            height: 100vh;
+            z-index: 4;
+            top:0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .toggle-holder {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 3;
+        }
+
+        #toggle {
+            height: 32px;
+            width: 30px;
+            position: relative;
+        }
+
+        #toggle:hover{
+            cursor: pointer;
+        }
+
+        #toggle:before {
+            transform: translate3d(0,-8px,0px);
+            width: 21px;
+            margin-left: 0;
+            content: '';
+            height: 3px;
+            position: absolute;
+            transform-origin: 50% 50%;
+            transition: all .25s;
+            top:8px;
+            background: rgb(var(--color-primary-lighter));
+        }
+        #toggle:after {
+            transform: translate3d(0,8px,0px);
+            width: 30px;
+            margin-left: 0;
+            content: '';
+            height: 3px;
+            position: absolute;
+            transform-origin: 50% 50%;
+            top:8px;
+            background: rgb(var(--color-primary-lighter));
+        }
+
+        #toggle .menu-line {
+            width: 13px;
+            height: 3px;
+            position: absolute;
+            transition: all .25s;
+            margin-left: 0;
+            top: 8px;
+            background-color: rgb(var(--color-primary-lighter));
+        }
+
+        #toggle.toggle--on .menu-line{
+            opacity: 0;
+        }
+
+        #toggle.toggle--on:before {
+            transform: rotate3d(0,0,1,
+            45deg) translate3d(0,0,0);
+            background-color: rgb(var(--color-primary-lighter));
+            margin-left: 0;
+            width: 26px;
+        }
+
+        #toggle.toggle--on:after {
+            transform: rotate3d(0,0,1,
+            -45deg);
+            background-color: rgb(var(--color-primary-lighter));
+            width: 26px;
+        }
+        #menu-holder {
+            background-color: rgb(var(--color-navbar-blue));
+            width: 380px;
+            height: 100%;
+            min-height: 100vh;
+            top: 0;
+            left: 0;
+            position: absolute;
+            transform: translateX(-400px);
+            transition: transform .3s linear;
+            z-index: 1;
+            overflow: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        #menu-holder.toggle--on {
+            transform: translateX(0);
+        }
+
+        .menu-holder--points {
+            width: fit-content;
+            height: fit-content;
+            padding-left: 32px;
+        }
+
+        .menu-item {
+            list-style: none;
+        }
+        .menu-item:not(:first-child) {
+            margin-top: 24px;
+        }
+
+        .menu-item-row {
+            display: flex;
+            flex: row;
+            justify-content: start;
+            align-items: center;
+            gap: 8px;
+            margin-top: 32px; 
+        }
+
+        .menu-item-row img {
+            width: 24px;
+            height: 24px;
+        }
+
+        .menu-item-row h3 {
+            color: rgb(var(--color-primary-lighter));
+            margin: 0;
+            padding: 0;
+        }
+
+        .sidebar-item {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-item p:nth-child(1){
+            color: rgb(var(--color-primary-light));
+            font-weight: 900;
+        }
+
+        .links-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .links-row p {
+            color: rgb(var(--color-primary-light));
+            font-weight: bold;
+        }
+
+        @media screen and (max-width: 1599px){
+            .header-holder {
+                width: 320px;
+            }
+
+            #menu-holder {
+                width: 320px;
+                transform: translateX(-320px);
+            }
+        }
+        @media screen and (max-width: 1360px){
+            .header-holder {
+                width: 90px;
+            }
+            .sidebar-item {
+                display: none;
+            }
+            .links-row {
+                display: none;
+            }
+        }
+        @media screen and (max-width: 1020px){
+            .header-holder {
+                height: 55px;
+                width: 100%;
+                z-index: 2;
+            }
+
+            .toggle-holder {
+                top: 15px;
+                left: 15px;
+            }
+        }
+
+        @media screen and (max-width: 650px) {
+            #menu-holder {
+                width: 100%;
+                transform: translateX(-100%);
+                overflow: auto;
+            }
+
+        }
+    </style>
+
+        <style>
+        @media screen and (max-width: 1360px) {
+            #home{
+                height: calc(100dvh - 55px);
+            }
+        }
+
+        #home {
+            height: 100dvh;
+            background-color: rgb(var(--color-primary-darker));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .col {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        div h1 {
+            color: rgb(var(--color-primary-lighter));
+            text-shadow: 2px 5px 4px black 25%;
+        }
+
+        .image-holder{
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        .image-holder img:nth-child(1){
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+
+        .image-holder img:nth-child(2){
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -62%)
+        }
+
+        .name-col {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .name-col h1 {
+            margin: 0;
+            padding: 0;
+        }
+
+        @media screen and (max-width: 520px){
+            .image-holder {
+                width: 200px;
+                margin: 0;
+            }
+
+            .image-holder img:nth-child(1){
+                width: 200px;
+                height: auto;
+            }
+
+            .image-holder img:nth-child(2){
+                width: 100px;
+                height: auto;
+            }
+
+            .name-col h1{
+                font-size: 48px;
+            }
+        }
+    </style>
+
+        <style>
+        @media screen and (max-width: 980px) {
+            .hobby-cards {
+                flex-wrap: wrap;
+            }
+
+            .hobby-cards:nth-child(3){
+                margin-top: 40px;
+            }
+        }
+
+        @media screen and (max-width: 500px){
+            .hobby h1 {
+                font-size: 56px;
+            }
+        }
+
+        #hobby {
+            background-image: url("img/frantisek.jpg");
+            background-size: cover;
+        }
+
+        h1 {
+            color: rgb(var(--color-primary-lighter));
+            text-align: center;
+            padding-top: 96px;
+            text-shadow: 2px 2px 10px black 0.4;
+        }
+
+        .hobby-cards {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 40px;
+            padding-bottom: 96px;
+        }
+
+    </style>
+
+        <style>
+        .experience {
+            background-color: rgb(var(--color-primary-darker));
+        }
+
+        .experience h1 {
+            margin-bottom: 96px;
+        }
+
+        .experience-element {
+            padding-bottom: 96px;
+            display: flex;
+            flex-direction: column;
+            gap: 65px;
+        }
+
+        .line {
+            width: calc(100vw - 30vw);
+            height: 0.1rem;
+            background-color: rgb(80, 79, 79);
+        }
+
+        .centerer {
+            display: none;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media screen and (max-width: 520px){
+            .experience h1 {
+                font-size: 36px;
+            }
+        }
+
+        @media screen and (max-width: 680px){
+            .centerer {
+                display: block;
+            }
+        }
+    </style>
+
+        <style>
+        @media screen and (max-width: 472px){
+            h1 {
+                font-size: 48px;
+            }
+        }
+        .career {
+            background-color: rgb(var(--color-primary-dark));
+            padding-bottom: 96px;
+        }
+
+        ul.career-element {
+            margin-top: 40px;
+            margin-right: 32px;
+        }
+    </style>
+
+        <style>
+       #knowledge {
+            background-color: rgb(var(--color-primary-darker));
+       }
+
+       .knowledge h1 {
+            padding-bottom: 96px;
+       }
+
+       .experties-columns {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 78px;
+       }
+       h2 {
+            text-align: center;
+            color: #F5F5F5;
+            font-weight: 400;
+            padding: 0;
+            margin: 0;
+       }
+
+       h2:nth-child(3) {
+            margin-top: 40px;
+            margin-bottom: 16px;
+       }
+
+       .text-circle {
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            box-shadow: 0 10px 10px rgb(var(--color-primary-darker));
+            background-color: rgb(var(--color-primary-darker));
+            cursor: pointer;
+       }
+
+       .text-circle h2 {
+            z-index: 2;
+            background-color: rgb(var(--color-primary-darker));
+            padding-bottom: 10px;
+       }
+
+       .circle {
+            height: 40px;
+            width: 40px;
+            margin-bottom: 10px;
+            border-radius: 50%;
+            background-color: rgb(var(--color-navbar-blue));
+            margin-left: 8px;
+            transform-origin: 50%, 50%;
+            background-image: url("svg/arrow.svg");
+            background-repeat: no-repeat;
+            background-size: 20px 20px;
+            background-position: center;
+            transition: 0.3s;
+       }
+
+       .circle:hover{
+            cursor: pointer;
+       }
+
+       .circle-rotated {
+            transform: rotate(90deg);
+       }
+
+       .column {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-items: center;
+            align-items: center;
+            overflow: hidden;
+       }
+       
+       .movable {
+            top: -450px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.5s ease-in-out;
+       }
+
+       .experties-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 32px;
+            padding-bottom: 96px;
+       }
+
+       .moved {
+            transform: translateY(450px);
+       }
+
+       .img {
+            height: 100px;
+            width: 100px;
+       }
+
+       @media screen and (max-width: 1150px){
+          .text-circle h2{
+               font-size: 20px;
+          }
+       }
+
+       @media screen and (max-width: 750px){
+          .experties-columns {
+               justify-content: space-between;
+               gap: 2px;
+          }
+       }
+
+       @media screen and (max-width: 420px){
+          .experties-row img {
+               height: 64px;
+               width: 64px;
+          }
+
+          .text-circle h2 {
+               font-size: 18px;
+          }
+
+          .text-circle {
+               flex-direction: column;
+          }
+
+          .circle {
+               margin: 0;
+          }
+       }
+
+       @media screen and (max-width: 350px){
+          .text-circle h2 {
+               font-size: 16px;
+          }
+       }
+    </style>
+
+    <style>
+.contact {
+    background-color: rgb(var(--color-primary-dark));
+    position: relative;
+    font-family: 'Lexend', sans-serif;
+}
+
+#contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    padding-bottom: 64px;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group label{
+    text-transform: uppercase;
+    color: rgb(var(--color-primary-lighter));
+    background-color: rgb(var(--color-primary-dark));
+    position: absolute;
+    top: -12px;
+    left: 10px;
+    padding: 2px;
+    padding-left: 4px;
+    padding-right: 4px;
+    font-size: 1.2rem;
+    font-family: 'Lexend', sans-serif;
+    font-weight: 400;
+}
+.form-group input {
+    padding: 16px;
+    width: 620px;
+    background-color: rgb(var(--color-primary-dark));
+    color: rgb(var(--color-primary-normal));
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 30px;
+    border: 2px solid white;
+    border-radius: 5px;
+}
+.form-group:nth-child(3) {
+    margin-bottom: 48px;
+}
+
+.form-group input:focus{
+    outline: none;
+}
+
+.form-group textarea {
+    padding: 16px;
+    width: 620px;
+    resize: vertical;
+    background-color: rgb(var(--color-primary-dark));
+    color: rgb(var(--color-primary-normal));
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 30px;
+    border: 2px solid white;
+    border-radius: 5px;
+    font-family: 'Lexend', sans-serif;
+}
+
+.form-group:nth-child(5){
+    width: 100%;
+}
+
+.btn {
+    background-color: rgb(var(--color-navbar-blue));
+    color: rgb(var(--color-primary-lighter));
+    font-weight: bold;
+    border-radius: 5px;
+    width: 320px;
+    height: 62px;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 1.1rem;
+    transition: 0.1s linear;
+}
+
+@media screen and (max-width: 620px){
+    .form-group input{
+        width: calc(100vw - 60px)
+    }
+
+    .form-group textarea{
+        width: calc(100vw - 60px)
+    }
+
+    .btn {
+        width: calc(100vw * 0.5);
+    }
+}
+
+.form-control {
+    outline: none;
+}
+
+.btn:hover{
+    box-shadow: 4px 4px 4px 2px rgb(0, 0, 0, 0.25);
+}
+
+</style>
+    <style>
+       
+    </style>
+
+
+</head>
+<body>
+        <header class="header-holder">
+
+
+        <div class="sidebar-container">
+            <div class="sidebar-item">
+                <p>NAME</p>
+                <p>Filip Szymanski</p>
+            </div>
+            <div class="sidebar-item">
+                <p>SCHULE</p>
+                <p>Carl-Severing-Berufskolleg </br> Berufliches Gymnasium für </br>Mathematik und Informatik</p>
+            </div>
+            <div class="sidebar-item">
+                <p>EMAIL</p>
+                <p>szymanski.fp@gmail.com</p>
+            </div>
+            <div class="links-row">
+                <a href="https://www.linkedin.com/in/filip-szyma%C5%84ski-01478b1ab/" target="_blank"><p>Linkedin</p></a>
+                <a href="https://www.github.com/SzymanskiFilip" target="_blank"><p>Github</p></a>
+                            </div>
+        <div>
+
+        <div class="toggle-holder">
+            <div id="toggle" onClick="onNav()">
+                <div class="menu-line"></div>
+            </div> 
+        </div>
+        
+        <div id="menu-holder">
+            <nav class="menu-holder--points">
+                <ul>
+                    <li class="menu-item">
+                        <div class="menu-item-row">
+                            <image src="svg/home-alt-svgrepo-com.svg" alt="Icon"/>
+                            <a href="#home"><h3>HOME</h3></a>
+                        </div>
+                        <div class="menu-item-row">
+                            <image src="svg/question-mark-svgrepo-com.svg" alt="Icon"/>
+                            <a href="#hobby"><h3>INTERESSEN</h3></a>
+                        </div>
+                        <div class="menu-item-row">
+                            <image src="svg/graph-svgrepo-com.svg" alt="Icon"/>
+                            <a href="#experience"><h3>ERFAHRUNGEN</h3></a>
+                        </div>
+                        <div class="menu-item-row">
+                            <image src="svg/history-svgrepo-com.svg" alt="Icon"/>
+                            <a href="#career"><h3>WERDEGANG</h3></a>
+                        </div>
+                        <div class="menu-item-row">
+                            <image src="svg/light-bulb-13-svgrepo-com.svg" alt="Icon"/>
+                            <a href="#knowledge"><h3>KENNTNISSE</h3></a>
+                        </div>
+                        <div class="menu-item-row">
+                            <image src="svg/email-svgrepo-com.svg" alt="Icon"/>
+                            <a href="#contact"><h3>KONTAKT</h3></a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+            <script>
+
+    </script>
+    <style>
+        #plant-profile {
+
+
+        }
+
+        .infogroup {
+
+        }
+
+        @media screen and (max-width: 1360px){
+
+        }
+    </style>
+<div id="plant-profile">
+
+</div>
+
+    </header>
+
+    <div id="content">
+            <section id="home" class="home">
+        <div class="col">
+            <div class="name-col">
+                <h1>Filip</h1>
+                <h1>Szymanski</h1>
+            </div>
+            
+            <div class="image-holder">
+                <img src="svg/blob.svg" alt="">
+                <img src="svg/peep.svg" alt="">
+            </div>
+
+        </div>
+    </section>
+
+            
+    <section id="hobby" class="hobby">
+
+        <h1>Interessen</h1>
+
+        <div class="hobby-element">
+            <span class="hobby-cards">
+                                        <script>
+
+    </script>
+    <style>
+        .card {
+            width: 320px;
+            height: 440px;
+            background-color: rgb(var(--color-primary-dark));
+            box-shadow: 0px 0px 10px 6px rgb(0, 0, 0, 0.25);
+        }
+
+        .card {
+            padding: 32px;
+            border-radius: 5px;
+        }
+
+        .card img {
+            width: 64px;
+        }
+
+        .card h3 {
+            margin-top: 32px;
+        }
+
+        .card p {
+            margin-top: 20px;
+            font-weight: 200;
+            font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 980px) {
+            .card {
+                margin-top: 40px;
+            }
+        }
+
+        @media screen and (max-width: 1500px){
+            .card {
+                width: 250px;
+                
+            }
+            .card p {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+    <div class="card">
+        <div class="card-content">
+                            <div class="card-content--icon">
+                    <img src="./svg/programmieren.svg" width="60px">
+                </div>
+                        <h3>Programmieren </h3>
+            <p class="light color-primary-normal"> In der Schule, sowie auch in meiner Freizeit, bereitet mir das Programmieren mit hauptsächlich Java und den Spring Framework und verschiedenen web Technologien. </p>
+        </div>
+    </div>
+                                        <script>
+
+    </script>
+    <style>
+        .card {
+            width: 320px;
+            height: 440px;
+            background-color: rgb(var(--color-primary-dark));
+            box-shadow: 0px 0px 10px 6px rgb(0, 0, 0, 0.25);
+        }
+
+        .card {
+            padding: 32px;
+            border-radius: 5px;
+        }
+
+        .card img {
+            width: 64px;
+        }
+
+        .card h3 {
+            margin-top: 32px;
+        }
+
+        .card p {
+            margin-top: 20px;
+            font-weight: 200;
+            font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 980px) {
+            .card {
+                margin-top: 40px;
+            }
+        }
+
+        @media screen and (max-width: 1500px){
+            .card {
+                width: 250px;
+                
+            }
+            .card p {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+    <div class="card">
+        <div class="card-content">
+                            <div class="card-content--icon">
+                    <img src="./svg/sprachen.svg" width="60px">
+                </div>
+                        <h3>Sprachen </h3>
+            <p class="light color-primary-normal"> Außerhalb der Programmierung und der Schule lerne ich auch gerne Fremdsprachen. Zurzeit bin ich kommunikativ in drei Sprachen in Wort und Schrift.</p>
+        </div>
+    </div>
+                                        <script>
+
+    </script>
+    <style>
+        .card {
+            width: 320px;
+            height: 440px;
+            background-color: rgb(var(--color-primary-dark));
+            box-shadow: 0px 0px 10px 6px rgb(0, 0, 0, 0.25);
+        }
+
+        .card {
+            padding: 32px;
+            border-radius: 5px;
+        }
+
+        .card img {
+            width: 64px;
+        }
+
+        .card h3 {
+            margin-top: 32px;
+        }
+
+        .card p {
+            margin-top: 20px;
+            font-weight: 200;
+            font-size: 1.5rem;
+        }
+
+        @media screen and (max-width: 980px) {
+            .card {
+                margin-top: 40px;
+            }
+        }
+
+        @media screen and (max-width: 1500px){
+            .card {
+                width: 250px;
+                
+            }
+            .card p {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+    <div class="card">
+        <div class="card-content">
+                            <div class="card-content--icon">
+                    <img src="./svg/training.svg" width="60px">
+                </div>
+                        <h3>Krafttraining </h3>
+            <p class="light color-primary-normal"> In der Freizeit trainiere ich gerne alleine oder mit meinen Freunden. </p>
+        </div>
+    </div>
+                            </span>
+        </div>
+    </section>
+
+        
+            <section id="experience" class="experience">
+
+        <h1>Erfahrungen</h1>
+
+            
+
+        <div class="experience-element">
+                                                <script>
+
+    </script>
+    <style>
+        @media screen and (max-width: 650px) {
+            .experience-content {
+                flex-direction: column;
+            }
+
+            .experience-content-img {
+                height: 210px;
+                width: 320px;
+            }   
+        }
+
+        .experience-content-img {
+            height: 310px;
+            width: 420px;
+            filter: brightness(75%);
+            box-shadow: 0 0 10px 6px rgb(21,23,16,0.5);
+            border-radius: 5px;
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        .experience-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            margin-left: 32px;
+            margin-right: 32px;
+            gap: 80px;
+        }
+
+        .experience-content-text p {
+            font-weight: 200;
+            font-size: 1.3rem;
+        }
+
+        .experiene-content-link {
+            margin-top: 8px;
+        }
+
+        @media screen and (max-width: 835px){
+            .experience-content {
+                margin-left: 16px;
+                margin-right: 16px;
+            }
+
+            .experience-content-img {
+                width: 320px;
+                height: 210px;
+            }
+        }
+
+        @media screen and (max-width: 650px){
+            .experience-content {
+                gap: 10px;
+            }
+
+            .experience-content {
+                margin-left: 8px;
+                margin-right: 8px;
+            }
+
+            .experience-content-img {
+                width: 300px;
+                height: auto;
+            }
+        }
+
+        @media screen and (max-width: 550px){
+            .experience-content-text p {
+                font-size: 18px;
+            }
+        }
+
+        @media screen and (max-width: 680px){
+            .experience-content { 
+                flex-direction: column;
+            }
+        }
+        
+    </style>
+    
+        <div class="experience-content">
+        <img class="experience-content-img" src="./img/image3.jpg">
+
+        <span class="experience-content-text">
+            <h3> Praktikum - Webentwicklung</h3>
+            <p class="color-primary-normal"> In 2023 habe ich ein 3-wöchiges Praktikum im Bereich der web Entwicklung abgeschlossen. In der Zeit habe ich Erfahrung in UI/UX Design und in der Webetwicklung in den Symfony Framework gesammelt.</p>
+                            <div class="experiene-content-link">
+                    <img src="./svg/union.svg" width="16px" height="16px">
+                    <a href="fldafljka" class="color-primary-light"> zur Webseite von HDNET</a>
+                </div>
+                    </span>
+    </div>
+    
+                                                <div class="centerer">
+                        <div class="line"></div>
+                    </div>
+                                    <script>
+
+    </script>
+    <style>
+        @media screen and (max-width: 650px) {
+            .experience-content {
+                flex-direction: column;
+            }
+
+            .experience-content-img {
+                height: 210px;
+                width: 320px;
+            }   
+        }
+
+        .experience-content-img {
+            height: 310px;
+            width: 420px;
+            filter: brightness(75%);
+            box-shadow: 0 0 10px 6px rgb(21,23,16,0.5);
+            border-radius: 5px;
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        .experience-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            margin-left: 32px;
+            margin-right: 32px;
+            gap: 80px;
+        }
+
+        .experience-content-text p {
+            font-weight: 200;
+            font-size: 1.3rem;
+        }
+
+        .experiene-content-link {
+            margin-top: 8px;
+        }
+
+        @media screen and (max-width: 835px){
+            .experience-content {
+                margin-left: 16px;
+                margin-right: 16px;
+            }
+
+            .experience-content-img {
+                width: 320px;
+                height: 210px;
+            }
+        }
+
+        @media screen and (max-width: 650px){
+            .experience-content {
+                gap: 10px;
+            }
+
+            .experience-content {
+                margin-left: 8px;
+                margin-right: 8px;
+            }
+
+            .experience-content-img {
+                width: 300px;
+                height: auto;
+            }
+        }
+
+        @media screen and (max-width: 550px){
+            .experience-content-text p {
+                font-size: 18px;
+            }
+        }
+
+        @media screen and (max-width: 680px){
+            .experience-content { 
+                flex-direction: column;
+            }
+        }
+        
+    </style>
+    
+        <div class="experience-content right">
+        <span class="experience-content-text">
+            <h3> Videobearbeitung - Freiberuflich</h3>
+            <p class="color-primary-normal"> In zwei Jahren habe ich Freiberuflich videos und thumbnails für content creator aus fünf Ländern mit dem following von ein paar hundert bis zu um die 300.000 erstellt.</p>
+                    </span>
+        <img class="experience-content-img" src="./img/image4.jpg">
+    </div>
+    
+                                                <div class="centerer">
+                        <div class="line"></div>
+                    </div>
+                                    <script>
+
+    </script>
+    <style>
+        @media screen and (max-width: 650px) {
+            .experience-content {
+                flex-direction: column;
+            }
+
+            .experience-content-img {
+                height: 210px;
+                width: 320px;
+            }   
+        }
+
+        .experience-content-img {
+            height: 310px;
+            width: 420px;
+            filter: brightness(75%);
+            box-shadow: 0 0 10px 6px rgb(21,23,16,0.5);
+            border-radius: 5px;
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        .experience-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            margin-left: 32px;
+            margin-right: 32px;
+            gap: 80px;
+        }
+
+        .experience-content-text p {
+            font-weight: 200;
+            font-size: 1.3rem;
+        }
+
+        .experiene-content-link {
+            margin-top: 8px;
+        }
+
+        @media screen and (max-width: 835px){
+            .experience-content {
+                margin-left: 16px;
+                margin-right: 16px;
+            }
+
+            .experience-content-img {
+                width: 320px;
+                height: 210px;
+            }
+        }
+
+        @media screen and (max-width: 650px){
+            .experience-content {
+                gap: 10px;
+            }
+
+            .experience-content {
+                margin-left: 8px;
+                margin-right: 8px;
+            }
+
+            .experience-content-img {
+                width: 300px;
+                height: auto;
+            }
+        }
+
+        @media screen and (max-width: 550px){
+            .experience-content-text p {
+                font-size: 18px;
+            }
+        }
+
+        @media screen and (max-width: 680px){
+            .experience-content { 
+                flex-direction: column;
+            }
+        }
+        
+    </style>
+    
+        <div class="experience-content">
+        <img class="experience-content-img" src="./img/image2.jpg">
+
+        <span class="experience-content-text">
+            <h3> Praktikum - Software Entwicklung</h3>
+            <p class="color-primary-normal"> In 2019 habe ich ein 3-wöchiges Praktikum absolviert wo ich die Programmierung von Systemem, die mit Sensoren und Motoren funktionieren, kennengelernt habe.</p>
+                    </span>
+    </div>
+    
+                                                <div class="centerer">
+                        <div class="line"></div>
+                    </div>
+                                    <script>
+
+    </script>
+    <style>
+        @media screen and (max-width: 650px) {
+            .experience-content {
+                flex-direction: column;
+            }
+
+            .experience-content-img {
+                height: 210px;
+                width: 320px;
+            }   
+        }
+
+        .experience-content-img {
+            height: 310px;
+            width: 420px;
+            filter: brightness(75%);
+            box-shadow: 0 0 10px 6px rgb(21,23,16,0.5);
+            border-radius: 5px;
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        .experience-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            margin-left: 32px;
+            margin-right: 32px;
+            gap: 80px;
+        }
+
+        .experience-content-text p {
+            font-weight: 200;
+            font-size: 1.3rem;
+        }
+
+        .experiene-content-link {
+            margin-top: 8px;
+        }
+
+        @media screen and (max-width: 835px){
+            .experience-content {
+                margin-left: 16px;
+                margin-right: 16px;
+            }
+
+            .experience-content-img {
+                width: 320px;
+                height: 210px;
+            }
+        }
+
+        @media screen and (max-width: 650px){
+            .experience-content {
+                gap: 10px;
+            }
+
+            .experience-content {
+                margin-left: 8px;
+                margin-right: 8px;
+            }
+
+            .experience-content-img {
+                width: 300px;
+                height: auto;
+            }
+        }
+
+        @media screen and (max-width: 550px){
+            .experience-content-text p {
+                font-size: 18px;
+            }
+        }
+
+        @media screen and (max-width: 680px){
+            .experience-content { 
+                flex-direction: column;
+            }
+        }
+        
+    </style>
+    
+        <div class="experience-content right">
+        <span class="experience-content-text">
+            <h3> Softwareprojekt</h3>
+            <p class="color-primary-normal"> Seit mitte 2023 arbeite ich an einer Webseite die es ermöglicht zukünftigen professionelen Spielern Turniere, Komentatoren, Trainer und Mitspieler zu suchen.  </p>
+                            <div class="experiene-content-link">
+                    <img src="./svg/union.svg" width="16px" height="16px">
+                    <a href="fldafljka" class="color-primary-light"> zur Webseite von Esportpanel</a>
+                </div>
+                    </span>
+        <img class="experience-content-img" src="./img/image1.jpg">
+    </div>
+    
+            </div>
+    </section>
+
+                <section id="career" class="career">
+
+        <h1>Werdegang</h1>
+
+        <ul class="career-element">
+                                <script>
+
+    </script>
+    <style>
+        li.timeline-event {
+            margin: 0 0 48px 64px;
+            position: relative;
+            padding-top: 8px;
+            list-style: none;
+            transition: .3s;
+            margin-left: 150px;
+        }
+
+        .date {
+            font-size: 18px;
+        }
+
+        .timline-event-date {
+            position: absolute;
+            left: -115px;
+            top: 9px;
+            transition: .3s;
+            color: rgb(var(--color-primary-light));
+            font-weight: 700;
+        }
+
+        .timeline-event-content {
+            margin-left: 48px;
+        }
+
+        span.timeline-circle {
+            position: absolute;
+            top: 0;
+            left: -32px;
+        }
+
+        span.timeline-circle:before {
+            content: "";
+            display: block;
+            width: 32px;
+            height: 32px;
+            border-radius: 90%;
+            border: 4px solid rgb(var(--color-primary-light));
+            position: absolute;
+            left: -16px;
+            top: 4px;
+            z-index: 0;
+            transition: .3s;
+        }
+
+        li.timeline-event:not(:last-child):before {
+            content: "";
+            width: 4px;
+            height: calc(100% - 20px);
+            position: absolute;
+            background-color: rgb(var(--color-primary-light));
+            left: -30px;
+            top: 58px; }
+
+        li.timeline-event span.timeline-circle:after {
+            content: "";
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            left: -8px;
+            top: 12px;
+            border-radius: 90%;
+            background-color: rgb(var(--color-primary-light));
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        li.timeline-event:hover span.timeline-circle:after {
+            opacity: 1;
+            transition: opacity .3s;
+        }
+
+        li.timeline-event:hover p {
+            color: rgb(var(--color-primary-lighter));
+            transition: color .3s ease-in-out;
+        }
+
+        @media screen and (max-width: 640px){
+            .date {
+                font-size: 24px;
+                bottom: -10px;
+            }
+
+            .timline-event-date {
+                top: 4px;
+            }
+        }
+
+        @media screen and (max-width: 374px){
+            .timeline-event-content {
+                margin: 0;
+                font-size: 14px;
+            }
+
+            .career-element {
+                margin: 0;
+            }
+        }
+    </style>
+        <li class="timeline-event">
+            <span class="timeline-circle"></span>
+                <div>
+                <p class="timeline-event-content"><b> 2009-2013</b>  Grundschule Pierzchow </p>
+                </div>
+            <div class="timline-event-date">
+                <p class="date color-primary-light"> 2009 </p>
+            </div>
+        </li>
+
+                                <script>
+
+    </script>
+    <style>
+        li.timeline-event {
+            margin: 0 0 48px 64px;
+            position: relative;
+            padding-top: 8px;
+            list-style: none;
+            transition: .3s;
+            margin-left: 150px;
+        }
+
+        .date {
+            font-size: 18px;
+        }
+
+        .timline-event-date {
+            position: absolute;
+            left: -115px;
+            top: 9px;
+            transition: .3s;
+            color: rgb(var(--color-primary-light));
+            font-weight: 700;
+        }
+
+        .timeline-event-content {
+            margin-left: 48px;
+        }
+
+        span.timeline-circle {
+            position: absolute;
+            top: 0;
+            left: -32px;
+        }
+
+        span.timeline-circle:before {
+            content: "";
+            display: block;
+            width: 32px;
+            height: 32px;
+            border-radius: 90%;
+            border: 4px solid rgb(var(--color-primary-light));
+            position: absolute;
+            left: -16px;
+            top: 4px;
+            z-index: 0;
+            transition: .3s;
+        }
+
+        li.timeline-event:not(:last-child):before {
+            content: "";
+            width: 4px;
+            height: calc(100% - 20px);
+            position: absolute;
+            background-color: rgb(var(--color-primary-light));
+            left: -30px;
+            top: 58px; }
+
+        li.timeline-event span.timeline-circle:after {
+            content: "";
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            left: -8px;
+            top: 12px;
+            border-radius: 90%;
+            background-color: rgb(var(--color-primary-light));
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        li.timeline-event:hover span.timeline-circle:after {
+            opacity: 1;
+            transition: opacity .3s;
+        }
+
+        li.timeline-event:hover p {
+            color: rgb(var(--color-primary-lighter));
+            transition: color .3s ease-in-out;
+        }
+
+        @media screen and (max-width: 640px){
+            .date {
+                font-size: 24px;
+                bottom: -10px;
+            }
+
+            .timline-event-date {
+                top: 4px;
+            }
+        }
+
+        @media screen and (max-width: 374px){
+            .timeline-event-content {
+                margin: 0;
+                font-size: 14px;
+            }
+
+            .career-element {
+                margin: 0;
+            }
+        }
+    </style>
+        <li class="timeline-event">
+            <span class="timeline-circle"></span>
+                <div>
+                <p class="timeline-event-content"><b> 2013-2015</b>  2013-2015 Grundschule am Bühlbusch Verl </p>
+                </div>
+            <div class="timline-event-date">
+                <p class="date color-primary-light"> 2013 </p>
+            </div>
+        </li>
+
+                                <script>
+
+    </script>
+    <style>
+        li.timeline-event {
+            margin: 0 0 48px 64px;
+            position: relative;
+            padding-top: 8px;
+            list-style: none;
+            transition: .3s;
+            margin-left: 150px;
+        }
+
+        .date {
+            font-size: 18px;
+        }
+
+        .timline-event-date {
+            position: absolute;
+            left: -115px;
+            top: 9px;
+            transition: .3s;
+            color: rgb(var(--color-primary-light));
+            font-weight: 700;
+        }
+
+        .timeline-event-content {
+            margin-left: 48px;
+        }
+
+        span.timeline-circle {
+            position: absolute;
+            top: 0;
+            left: -32px;
+        }
+
+        span.timeline-circle:before {
+            content: "";
+            display: block;
+            width: 32px;
+            height: 32px;
+            border-radius: 90%;
+            border: 4px solid rgb(var(--color-primary-light));
+            position: absolute;
+            left: -16px;
+            top: 4px;
+            z-index: 0;
+            transition: .3s;
+        }
+
+        li.timeline-event:not(:last-child):before {
+            content: "";
+            width: 4px;
+            height: calc(100% - 20px);
+            position: absolute;
+            background-color: rgb(var(--color-primary-light));
+            left: -30px;
+            top: 58px; }
+
+        li.timeline-event span.timeline-circle:after {
+            content: "";
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            left: -8px;
+            top: 12px;
+            border-radius: 90%;
+            background-color: rgb(var(--color-primary-light));
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        li.timeline-event:hover span.timeline-circle:after {
+            opacity: 1;
+            transition: opacity .3s;
+        }
+
+        li.timeline-event:hover p {
+            color: rgb(var(--color-primary-lighter));
+            transition: color .3s ease-in-out;
+        }
+
+        @media screen and (max-width: 640px){
+            .date {
+                font-size: 24px;
+                bottom: -10px;
+            }
+
+            .timline-event-date {
+                top: 4px;
+            }
+        }
+
+        @media screen and (max-width: 374px){
+            .timeline-event-content {
+                margin: 0;
+                font-size: 14px;
+            }
+
+            .career-element {
+                margin: 0;
+            }
+        }
+    </style>
+        <li class="timeline-event">
+            <span class="timeline-circle"></span>
+                <div>
+                <p class="timeline-event-content"><b> 2015-2020</b>  Gesamtschule Verl
+            In den Zeitraum fand mein erstes 3-wöchiges Praktikum in dem Bereich der Software Entwicklung statt. Außerdem ist mein Interesse an der Software Entwicklung und der Informatik seit dem Zeitpunkt immer größer geworden. </p>
+                </div>
+            <div class="timline-event-date">
+                <p class="date color-primary-light"> 2015 </p>
+            </div>
+        </li>
+
+                                <script>
+
+    </script>
+    <style>
+        li.timeline-event {
+            margin: 0 0 48px 64px;
+            position: relative;
+            padding-top: 8px;
+            list-style: none;
+            transition: .3s;
+            margin-left: 150px;
+        }
+
+        .date {
+            font-size: 18px;
+        }
+
+        .timline-event-date {
+            position: absolute;
+            left: -115px;
+            top: 9px;
+            transition: .3s;
+            color: rgb(var(--color-primary-light));
+            font-weight: 700;
+        }
+
+        .timeline-event-content {
+            margin-left: 48px;
+        }
+
+        span.timeline-circle {
+            position: absolute;
+            top: 0;
+            left: -32px;
+        }
+
+        span.timeline-circle:before {
+            content: "";
+            display: block;
+            width: 32px;
+            height: 32px;
+            border-radius: 90%;
+            border: 4px solid rgb(var(--color-primary-light));
+            position: absolute;
+            left: -16px;
+            top: 4px;
+            z-index: 0;
+            transition: .3s;
+        }
+
+        li.timeline-event:not(:last-child):before {
+            content: "";
+            width: 4px;
+            height: calc(100% - 20px);
+            position: absolute;
+            background-color: rgb(var(--color-primary-light));
+            left: -30px;
+            top: 58px; }
+
+        li.timeline-event span.timeline-circle:after {
+            content: "";
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            left: -8px;
+            top: 12px;
+            border-radius: 90%;
+            background-color: rgb(var(--color-primary-light));
+            opacity: 0;
+            transition: opacity .3s;
+        }
+
+        li.timeline-event:hover span.timeline-circle:after {
+            opacity: 1;
+            transition: opacity .3s;
+        }
+
+        li.timeline-event:hover p {
+            color: rgb(var(--color-primary-lighter));
+            transition: color .3s ease-in-out;
+        }
+
+        @media screen and (max-width: 640px){
+            .date {
+                font-size: 24px;
+                bottom: -10px;
+            }
+
+            .timline-event-date {
+                top: 4px;
+            }
+        }
+
+        @media screen and (max-width: 374px){
+            .timeline-event-content {
+                margin: 0;
+                font-size: 14px;
+            }
+
+            .career-element {
+                margin: 0;
+            }
+        }
+    </style>
+        <li class="timeline-event">
+            <span class="timeline-circle"></span>
+                <div>
+                <p class="timeline-event-content"><b> 2020-jetzt</b>  seit 2020 bin ich in dem Carl-Severing-Berufskolleg in Bielefeld, wo ich meine Allgemeine Hochschulreife mit den Leistungsfächern Informatik und Mathematik absolvieren werde.  </p>
+                </div>
+            <div class="timline-event-date">
+                <p class="date color-primary-light"> 2023 </p>
+            </div>
+        </li>
+
+                    </ul>
+    </section>
+
+        
+        
+    <section id="knowledge" class="knowledge">
+       <h1>Kenntnisse</h1>
+
+       <section class="experties-columns">
+            <div class="column">
+                <div class="text-circle" id="btn1">
+                    <h2>Sprachen</h2>
+                    <div class="circle" id="circle-1"></div>
+                </div>
+
+                <section id="column-1" class="movable">
+                    <style>
+.img-column {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 16px;
+}
+
+.img-column img {
+    height: 100px;
+    width: 100px;
+}
+
+@media screen and (max-width: 420px){
+    .img-column img {
+        height: 64px;
+        width: 64px;
+    }
+}
+</style>
+
+<div class="img-column">
+            <img src="./svg/tech/Java-Light.svg">
+            <img src="./svg/tech/JavaScript.svg">
+            <img src="./svg/tech/TypeScript.svg">
+    </div>
+
+<script>
+</script>
+                </section>
+            </div>
+            
+            <div class="column">
+                <div class="text-circle" id="btn2">
+                    <h2>Frameworks</h2>
+                    <div class="circle" id="circle-2"></div>
+                </div>
+
+                <section id="column-2" class="movable">
+                    <style>
+.img-column {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 16px;
+}
+
+.img-column img {
+    height: 100px;
+    width: 100px;
+}
+
+@media screen and (max-width: 420px){
+    .img-column img {
+        height: 64px;
+        width: 64px;
+    }
+}
+</style>
+
+<div class="img-column">
+            <img src="./svg/tech/Spring-Light.svg">
+            <img src="./svg/tech/NextJS-Light.svg">
+            <img src="./svg/tech/NestJS-Light.svg">
+    </div>
+
+<script>
+</script>
+                </section>
+            </div>
+
+            <div class="column">
+                <div class="text-circle" id="btn3">
+                    <h2>Datenbanken</h2>
+                    <div class="circle" id="circle-3"></div>
+                </div>
+
+                <section id="column-3" class="movable">
+                    <style>
+.img-column {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 16px;
+}
+
+.img-column img {
+    height: 100px;
+    width: 100px;
+}
+
+@media screen and (max-width: 420px){
+    .img-column img {
+        height: 64px;
+        width: 64px;
+    }
+}
+</style>
+
+<div class="img-column">
+            <img src="./svg/tech/MySQL-Light.svg">
+            <img src="./svg/tech/PostgreSQL-Light.svg">
+            <img src="./svg/tech/MongoDB.svg">
+    </div>
+
+<script>
+</script>
+                </section>
+            </div>
+       </section>
+
+       <h2>Sonstiges</h2>
+       <section class="experties-row">
+                            <img src="./svg/tech/Docker.svg" class="img">
+                            <img src="./svg/tech/Linux-Light.svg" class="img">
+                            <img src="./svg/tech/Bash-Light.svg" class="img">
+                   </section>
+    </section>
+
+            </div>
+</body>
+</html>
